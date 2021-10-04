@@ -25,8 +25,8 @@ public class tileInfo : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        transx = transform.position.x - centrePoint.position.x;
-        transy = transform.position.y - centrePoint.position.y;
+        //transx = transform.position.x - centrePoint.position.x;
+        //transy = transform.position.y - centrePoint.position.y;
     }
     void Start()
     {
