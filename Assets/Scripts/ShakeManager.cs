@@ -92,7 +92,7 @@ public class ShakeManager : MonoBehaviour
 
     private bool CountTimer()
     {
-        Debug.Log(timer);
+        //Debug.Log(timer);
         timer += Time.deltaTime;
         if(timer>WaitForShakeTime)
         {

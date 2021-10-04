@@ -38,10 +38,15 @@ public class PlayerInfo : MonoBehaviour
     /// </summary>
     public void AddHeart()
     {
+        if(heart+1> maxHeart)
+        {
+            return;
+        }
         heart = Mathf.Min((heart + 1), maxHeart);
-        // UI接口 **
+        
         // 动画接口 **
-        // 音乐接口 **
+        MusicManager.Instance.StopAddMew(heart);
+        HeartBar.Instance.SetHeartOn(heart);
     }
 
     /// <summary>
@@ -50,9 +55,11 @@ public class PlayerInfo : MonoBehaviour
     public void DeductHeart()
     {
         GlitchEffect.Instance.Glitch();
-        // UI接口 **
+        
         // 动画接口 **
-        // 音乐接口 **
+        
+
+
         if (!hurting)
         {
             hurting = true;
@@ -68,6 +75,10 @@ public class PlayerInfo : MonoBehaviour
         hurting = false;
 
         heart = Mathf.Max((heart - 1), 0);
+
+        HeartBar.Instance.SetHeartOff(heart);
+
+        MusicManager.Instance.PlayAddMew(heart);
 
         if (heart == 0)
         {

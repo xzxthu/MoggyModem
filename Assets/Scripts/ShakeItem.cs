@@ -7,7 +7,6 @@ public class ShakeItem : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("Enter Mine");
 
         if (collision.gameObject.tag == "Player")
         {
