@@ -8,7 +8,7 @@ public class SaveItem : MonoBehaviour
     {
         Debug.Log("Enter Save");
 
-        if (collision.gameObject.tag == "player")
+        if (collision.gameObject.tag == "Player")
         {
             ShakeManager.Instance.IsSave();
             Debug.Log("In Save");

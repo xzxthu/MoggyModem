@@ -8,7 +8,7 @@ public class TestManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        LevelManager.Instance.StartLevel();
+        Invoke("WaitForStart", 1f);
     }
 
     // Update is called once per frame
@@ -16,5 +16,10 @@ public class TestManager : MonoBehaviour
     {
         //Debug.Log(ItemManager.GetInstance().dicItem.Count);
         //Debug.Log(ItemManager.GetInstance().dicItem[tile].Count);
+    }
+
+    public void WaitForStart()
+    {
+        LevelManager.Instance.StartLevel();
     }
 }

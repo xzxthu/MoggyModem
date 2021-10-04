@@ -9,11 +9,12 @@ public class valueRandom : MonoBehaviour
     
     void Update()
     {
-        //Log(finalRandom(currentDifficulty));
+        //Debug.Log(finalRandom(currentDifficulty));
     }
     public int finalRandom(int index)
     {
         maxDifficulty = this.GetComponent<mapManager>().maxDifficulty;
+        currentDifficulty = this.GetComponent<mapManager>().currentDifficulty;
         int value = 0;
         if(index == 0 | index == maxDifficulty)
         {
