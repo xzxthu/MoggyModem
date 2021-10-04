@@ -19,7 +19,7 @@ public class timerControll : MonoBehaviour
         
         rawList = new GameObject[50];
         //pos = this.transform;
-        timerText.GetComponent<Text>().text = percent + "%";
+        
         obj = rawUnit;
         for(int i = 0; i < 50; i++)
         {
@@ -38,12 +38,13 @@ public class timerControll : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        timerText.GetComponent<Text>().text = percent + "%";
         rawGenerate();
+        this.transform.localScale = new Vector3(1.55f, 2.1f, 1);
     }
     void rawGenerate()
     {
-        GameObject obj = rawUnit;
+        //GameObject obj = rawUnit;
         int rawCount = Mathf.FloorToInt(percent / 2);
         
         for(int i = 0; i < rawCount; i++)
