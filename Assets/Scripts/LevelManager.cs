@@ -19,8 +19,8 @@ public class LevelManager : MonoBehaviour
 
     private static int[] levelUp = new int[]{0,0,1,1,1,2,3,4,5,6,7,8,9,10};
 
-    [HideInInspector] public GameObject LeftTile;
-    [HideInInspector] public GameObject RightTile;
+    public GameObject LeftTile;
+    public GameObject RightTile;
 
 
     public static LevelManager Instance;
@@ -40,7 +40,7 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
-        ResetLevel();
+        //ResetLevel();
     }
 
     public void AddScore(int addScore)
@@ -62,6 +62,10 @@ public class LevelManager : MonoBehaviour
         PlayerInfo.Instance.AddHeart();
         ProgressbarManager.Instance.ResetProgressBar();
         SetDifficulty();
+        ShakeManager.Instance.ResetShake();
+
+        Destroy(LeftTile);
+        Destroy(RightTile);
 
         GeneratTiles();
 
@@ -138,6 +142,10 @@ public class LevelManager : MonoBehaviour
         RightTile.GetComponent<ItemController>().DisableItems<SaveItem>();
         LeftTile.GetComponent<ItemController>().DisableItems<CoinItem>();
         RightTile.GetComponent<ItemController>().DisableItems<CoinItem>();
+        LeftTile.GetComponent<ItemController>().DisableItems<StartItem>();
+        RightTile.GetComponent<ItemController>().DisableItems<StartItem>();
+        LeftTile.GetComponent<ItemController>().DisableItems<EndItem>();
+        RightTile.GetComponent<ItemController>().DisableItems<EndItem>();
     }
 
     public void StartLevel()

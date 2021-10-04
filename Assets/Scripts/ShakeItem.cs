@@ -9,7 +9,7 @@ public class ShakeItem : MonoBehaviour
     {
         Debug.Log("Enter Mine");
 
-        if (collision.gameObject.tag == "player")
+        if (collision.gameObject.tag == "Player")
         {
 
             ShakeManager.Instance.StartShakeProcess();
