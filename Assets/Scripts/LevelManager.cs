@@ -138,6 +138,10 @@ public class LevelManager : MonoBehaviour
         RightTile.GetComponent<ItemController>().DisableItems<SaveItem>();
         LeftTile.GetComponent<ItemController>().DisableItems<CoinItem>();
         RightTile.GetComponent<ItemController>().DisableItems<CoinItem>();
+        LeftTile.GetComponent<ItemController>().DisableItems<StartItem>();
+        RightTile.GetComponent<ItemController>().DisableItems<StartItem>();
+        LeftTile.GetComponent<ItemController>().DisableItems<EndItem>();
+        RightTile.GetComponent<ItemController>().DisableItems<EndItem>();
     }
 
     public void StartLevel()
