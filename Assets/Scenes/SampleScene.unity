@@ -245,6 +245,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 25050004}
   m_CullTransparentMesh: 1
+--- !u!1 &34808654
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 34808655}
+  m_Layer: 0
+  m_Name: end
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &34808655
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 34808654}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 7.68, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 527467619}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &83628886
 GameObject:
   m_ObjectHideFlags: 0
@@ -681,6 +711,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 366567509}
   m_CullTransparentMesh: 1
+--- !u!1 &480918589
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 480918590}
+  m_Layer: 0
+  m_Name: start
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &480918590
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 480918589}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 527467619}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &496277100
 GameObject:
   m_ObjectHideFlags: 0
@@ -767,6 +827,7 @@ GameObject:
   m_Component:
   - component: {fileID: 527467619}
   - component: {fileID: 527467620}
+  - component: {fileID: 527467621}
   m_Layer: 0
   m_Name: map
   m_TagString: Untagged
@@ -784,7 +845,9 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 480918590}
+  - {fileID: 34808655}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -800,57 +863,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7113406a605a53e46b0d805a4a14e587, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  endNodes:
-  - {fileID: 8872929407002322875, guid: 71b0477114ab14a4483125fd67d573e6, type: 3}
   normalNodes:
-  - {fileID: 1344769947512724402, guid: dbef9d29ad90a364ca742eb7b8a214e8, type: 3}
+  - {fileID: 7990938073209867626, guid: 19732ab2ba0411248b8c93f5bad17939, type: 3}
+  - {fileID: 2806655281579424953, guid: 68294605da47d9642894e3d900064c65, type: 3}
   bendNodes:
-  - {fileID: 2176374737796284391, guid: 697d6f246c1601d47a088d8660004eb2, type: 3}
+  - {fileID: 4799682587035154963, guid: 49ccad84ff87a664dbd1ac390d1a551b, type: 3}
+  - {fileID: 5367048184180795416, guid: ae396b516356cdf4484553458a86c470, type: 3}
   tiles:
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  startPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  endPoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  CentrePoints:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  nextIsCentre: 000000000000000000
-  tileTypes: 00000000
-  mapStartPoint: {fileID: 1517278502}
-  nodeLength: 0
+  mapStartPoint: {fileID: 480918590}
+  mapEndPoint: {fileID: 34808655}
+  currentDifficulty: 0
+  maxDifficulty: 8
+  nullobj: {fileID: 1517278502}
   mapStyle: 1
+--- !u!114 &527467621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 527467618}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 487252008eaa97945b2b4a5050f74688, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxDifficulty: 0
+  currentDifficulty: 0
 --- !u!1 &640290300
 GameObject:
   m_ObjectHideFlags: 0
@@ -1753,7 +1794,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1328879996
 RectTransform:
   m_ObjectHideFlags: 0
