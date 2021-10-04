@@ -4,7 +4,22 @@ using UnityEngine;
 
 public class mapManager : MonoBehaviour
 {
-    
+
+    public static mapManager Instance;
+
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+        else
+        {
+            Instance = this;
+        }
+    }
+
     public List<GameObject> normalNodes = new List<GameObject>();
     public List<GameObject> bendNodes = new List<GameObject>();
     public List<GameObject> tiles = new List<GameObject>();
@@ -72,11 +87,13 @@ public class mapManager : MonoBehaviour
     {
         
     }
-    public void mapGenerator()
+    public List<GameObject> mapGenerator(int diff)
     {
+        currentDifficulty = diff;
         mapStyle = 0;
         mapStart(mapStyle);
         mapEnd();
+        return tiles;
     }
     void mapStart(int index)
     {

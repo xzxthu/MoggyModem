@@ -5,10 +5,10 @@ using UnityEngine.UI;
 
 public class tileInfo : MonoBehaviour
 {
-    [Header("���ؿ���Ѷ�")]
+    [Header("本地块的难度")]
     public int difficulty;
 
-    [Header("�ؿ�����")]
+    [Header("地块类型")]
     public TileType tileType = TileType.LeftToRight;
      
     [Header("")]
