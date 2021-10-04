@@ -11,14 +11,14 @@ public class ShakeManager : MonoBehaviour
     public float ShakingTime = 2f;
 
     [Header("摇哪些东西")]
-    public Transform ScreenShakeInNotSave;
-    public Transform ScreenShakeAllTheWay;
+    public Transform[] ScreenShakeInNotSave;
+    public Transform[] ScreenShakeAllTheWay;
 
     [Header("震动幅度")]
     public float amplitude = 1f;
 
-    private Vector3 originSaveScreen;
-    private Vector3 originAllScreen;
+    private Vector3[] originSaveScreen;
+    private Vector3[] originAllScreen;
 
     private bool isStarted = false;
     private bool isSave = false;
@@ -47,8 +47,19 @@ public class ShakeManager : MonoBehaviour
 
     private void Start()
     {
-        originSaveScreen = ScreenShakeInNotSave.position;
-        originAllScreen = ScreenShakeAllTheWay.position;
+        originSaveScreen = new Vector3[ScreenShakeInNotSave.Length];
+        originAllScreen = new Vector3[ScreenShakeAllTheWay.Length];
+
+        for (int i = 0;i<ScreenShakeInNotSave.Length;i++)
+        {
+            originSaveScreen[i] = ScreenShakeInNotSave[i].position;
+        }
+
+        for (int i = 0; i < ScreenShakeAllTheWay.Length; i++)
+        {
+            originAllScreen[i] = ScreenShakeAllTheWay[i].position;
+        }
+
         timer = 0;
 
     }
@@ -103,10 +114,17 @@ public class ShakeManager : MonoBehaviour
     {
         if (!isSave)
         {
-            WiggleScreen(ScreenShakeInNotSave, originSaveScreen);
+            for (int i = 0; i < ScreenShakeInNotSave.Length; i++)
+            {
+                WiggleScreen(ScreenShakeInNotSave[i], originSaveScreen[i]);
+            }
+            
         }
 
-        WiggleScreen(ScreenShakeAllTheWay, originAllScreen);
+        for (int i = 0; i < ScreenShakeAllTheWay.Length; i++)
+        {
+            WiggleScreen(ScreenShakeAllTheWay[i], originAllScreen[i]);
+        }
         Debug.Log("shaking");
     }
 
@@ -146,8 +164,17 @@ public class ShakeManager : MonoBehaviour
         isStarted = false;
         isSave = false;
         isShaking = false;
-        ScreenShakeInNotSave.position = originSaveScreen;
-        ScreenShakeAllTheWay.position = originAllScreen;
+
+        for (int i = 0; i < ScreenShakeInNotSave.Length; i++)
+        {
+            ScreenShakeInNotSave[i].position = originSaveScreen[i];
+        }
+
+        for (int i = 0; i < ScreenShakeAllTheWay.Length; i++)
+        {
+            ScreenShakeAllTheWay[i].position = originAllScreen[i];
+        }
+
         LevelManager.Instance.LeftTile.GetComponent<ItemController>().DisableItems<SaveItem>();
         LevelManager.Instance.RightTile.GetComponent<ItemController>().DisableItems<SaveItem>();
     }

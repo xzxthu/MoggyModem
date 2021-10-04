@@ -17,10 +17,14 @@ public class LevelManager : MonoBehaviour
     [Header("现在难度")]
     public int Difficulty = 0;
 
+
+    public ArtLetter scoreArtLetter;
+    public ArtLetter packageArtLetter;
+
     private static int[] levelUp = new int[]{0,0,1,1,1,2,3,4,5,6,7,8,9,10};
 
-    public GameObject LeftTile;
-    public GameObject RightTile;
+    [HideInInspector] public GameObject LeftTile;
+    [HideInInspector] public GameObject RightTile;
 
 
     public static LevelManager Instance;
@@ -47,7 +51,8 @@ public class LevelManager : MonoBehaviour
     {
         Score += addScore;
 
-        //调用艺术字 **
+        scoreArtLetter.showNumber = Score;
+
         // 音乐接口 **
     }
 
@@ -56,7 +61,9 @@ public class LevelManager : MonoBehaviour
     /// </summary>
     public void PassALevel()
     {
-        PassLevels++ ;
+        PassLevels++;
+        packageArtLetter.showNumber = PassLevels;
+
         AddScore(PassScore * PassLevels);
         DisableAllItems();
         PlayerInfo.Instance.AddHeart();
@@ -75,9 +82,16 @@ public class LevelManager : MonoBehaviour
         CoinManager.Instance.UpdateCoinItems();
 
         LeftTile.GetComponent<ItemController>().EnableItems<StartItem>();
-        RightTile.GetComponent<ItemController>().EnableItems<EndItem>();
+        StartCoroutine(LateTurnOnEndItem());
 
         LevelEvents(PassLevels);
+    }
+
+    private IEnumerator LateTurnOnEndItem()
+    {
+        yield return new WaitForSeconds(0.01f);
+        RightTile.GetComponent<ItemController>().EnableItems<EndItem>();
+
     }
 
     private void GeneratTiles()
@@ -164,12 +178,17 @@ public class LevelManager : MonoBehaviour
     /// </summary>
     public void ResetLevel()
     {
+        StopAllCoroutines();
+
         ShakeManager.Instance.ResetShake();
         DisableAllItems();
         ProgressbarManager.Instance.StopProgressBar();
         PassLevels = 0;
         Score = 0;
         Difficulty = 0;
+
+        scoreArtLetter.showNumber = 0;
+        packageArtLetter.showNumber = 0;
     }
     
 

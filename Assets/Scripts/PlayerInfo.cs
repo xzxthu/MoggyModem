@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class PlayerInfo : MonoBehaviour
 {
+    [HideInInspector] public Vector3 StartPos;
+
     public int startHeart = 4;//初始血量
     public int maxHeart = 5;//最大血量
 
-
+    private bool hurting = false;
     [SerializeField] private int heart;
 
     public static PlayerInfo Instance;
@@ -27,6 +29,7 @@ public class PlayerInfo : MonoBehaviour
 
     private void Start()
     {
+        StartPos = GameObject.FindWithTag("Player").transform.position;
         ResetCharacter();
     }
 
@@ -46,14 +49,27 @@ public class PlayerInfo : MonoBehaviour
     /// </summary>
     public void DeductHeart()
     {
-        heart = Mathf.Max((heart - 1), 0);
-
-        // 屏幕闪烁 **
+        GlitchEffect.Instance.Glitch();
         // UI接口 **
         // 动画接口 **
         // 音乐接口 **
+        if (!hurting)
+        {
+            hurting = true;
+            StartCoroutine(LateDeduce());
+        }
+        
+    }
 
-        if (heart==0)
+    private IEnumerator LateDeduce()
+    {
+        yield return new WaitForSeconds(0.01f);
+
+        hurting = false;
+
+        heart = Mathf.Max((heart - 1), 0);
+
+        if (heart == 0)
         {
             LevelManager.Instance.GameOver();
         }
@@ -64,12 +80,23 @@ public class PlayerInfo : MonoBehaviour
     /// </summary>
     public void ResetCharacter()
     {
+        StopAllCoroutines();
+        hurting = false;
         heart = startHeart;
         ResetPosition();
     }
 
     private void ResetPosition()
     {
+        GameObject.FindWithTag("Player").GetComponent<playerMovement>().isDrag = false;
+        GameObject.FindWithTag("Player").transform.position = StartPos;
+        StartCoroutine(LateRestPos());
+    }
+
+    private IEnumerator LateRestPos()
+    {
+        yield return new WaitForSeconds(0.01f);
         
     }
+
 }

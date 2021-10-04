@@ -11,6 +11,7 @@ public class playerMovement : MonoBehaviour
     //[DllImport("user32.dll", EntryPoint = "SetCursorPos")]  
     //private static extern int SetCursorPos(float x, float y);
 
+    private Vector3 distanceBtMouseAndBall;
     
 	// Use this for initialization
 	void Start ()
@@ -27,6 +28,9 @@ public class playerMovement : MonoBehaviour
     void OnMouseDown()
     {
         isDrag = true;
+
+        Vector3 mousePosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10f);
+        distanceBtMouseAndBall = transform.position - Camera.main.ScreenToWorldPoint(mousePosition);
     }
     void OnMouseUp()
     {
@@ -41,7 +45,7 @@ public class playerMovement : MonoBehaviour
         
             Vector3 objectPosition = Camera.main.ScreenToWorldPoint(mousePosition);
         
-            transform.position = objectPosition;
+            transform.position = objectPosition + distanceBtMouseAndBall;
         }
         
     }
@@ -52,7 +56,7 @@ public class playerMovement : MonoBehaviour
         Vector3 pos = new Vector3(transform.position.x, transform.position.y, 0f);
         var size = wallSize / 2f;
         Vector2 hitPoint = new Vector2(transform.position.x, transform.position.y);
-        Debug.Log(pos);
+        //Debug.Log(pos);
         //var count = Collision2D.contactCount;
         foreach (ContactPoint2D missileHit in collision.contacts)
         {
@@ -63,7 +67,13 @@ public class playerMovement : MonoBehaviour
         if(collision.gameObject.tag == "wall")
         {
             isDrag = false;
-            if((pos.x < collision.gameObject.transform.position.x - (wallSize / 2f)))
+
+            Vector3 movePos = collision.contacts[0].normal * wallSize;
+
+            transform.position += movePos;
+
+            /*
+            if ((pos.x < collision.gameObject.transform.position.x - (wallSize / 2f)))
             {
                 transform.position = new Vector3(pos.x - (size / 4f), transform.position.y, 0f);
                 
@@ -83,9 +93,13 @@ public class playerMovement : MonoBehaviour
             {
                 transform.position = new Vector3(transform.position.x, pos.y + (size / 4f), 0f);
                 
-            }
-            
+            }*/
+
+            PlayerInfo.Instance.DeductHeart();
+
         }
+
+
         if(collision.gameObject.tag == "obliqueWall")
         {
             isDrag = false;

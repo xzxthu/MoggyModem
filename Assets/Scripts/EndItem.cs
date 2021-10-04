@@ -4,20 +4,37 @@ using UnityEngine;
 
 public class EndItem : MonoBehaviour
 {
+    private bool hasEnd = false;
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
 
         if (collision.gameObject.tag == "Player")
         {
-            Debug.Log("Pass Level");
+            if(!hasEnd)
+            {
+                hasEnd = true;
 
-            LevelManager.Instance.PassALevel();
+                Debug.Log("Pass Level");
 
-            // 过关动画接口 **
+                LevelManager.Instance.PassALevel();
 
-            gameObject.SetActive(false);
+                PlayerInfo.Instance.ResetCharacter();
 
+                // 过关动画接口 **
+
+                StartCoroutine(lateClose());
+            }
 
         }
     }
+
+    private IEnumerator lateClose()
+    {
+        yield return new WaitForSeconds(0.01f);
+        hasEnd = false;
+        gameObject.SetActive(false);
+
+    }
+
 }
