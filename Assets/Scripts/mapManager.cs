@@ -61,10 +61,11 @@ public class mapManager : MonoBehaviour
                 if(normalNodes[i].GetComponent<tileInfo>().difficulty == num)
                 {
                     arr[index] = i;
+                    
                     index ++;
                 }
-                value = arr[Random.Range(0, end)];
-                
+                value = arr[Random.Range(0, index)];
+                //Debug.Log("normal" + value);
             }
         }
         if(!isNormal)
@@ -74,10 +75,11 @@ public class mapManager : MonoBehaviour
                 if(bendNodes[i].GetComponent<tileInfo>().difficulty == num)
                 {
                     arr[index] = i;
+                    
                     index ++;
                 }
-                value = arr[Random.Range(0, end)];
-                
+                value = arr[Random.Range(0, index)];
+                //Debug.Log("bend" + value);
             }
         }
         return value;
@@ -145,7 +147,7 @@ public class mapManager : MonoBehaviour
         GameObject obj = nullobj;
         GameObject obj1 = nullobj;
         int tileStyle = Random.Range(0, 3);
-        Debug.Log(tileStyle);
+        //Debug.Log(tileStyle);
         int overTurn = Random.Range(0, 2);
         if(tileStyle == 0)
         {

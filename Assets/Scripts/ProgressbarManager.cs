@@ -10,6 +10,8 @@ public class ProgressbarManager : MonoBehaviour
     [Header("当前进度")]
     public int ProgressBar = 100;
 
+    public timerControll BigTimer;
+
     private float TimeForOneTurn;
     private int failTimes = 0;
     private bool startBar = false;
@@ -40,6 +42,7 @@ public class ProgressbarManager : MonoBehaviour
         {
             timer += Time.deltaTime;
             ProgressBar = (int)(100 * (1-timer / TimeForOneTurn));
+            BigTimer.percent = ProgressBar;
 
             if (timer> TimeForOneTurn) //失败
             {
@@ -48,6 +51,7 @@ public class ProgressbarManager : MonoBehaviour
                 failTimes++;
                 timer = TimeForOneTurn * (1f-  1f/ (2f * failTimes));
                 ProgressBar = (int)(100 * (1f - timer / TimeForOneTurn));
+                BigTimer.percent = ProgressBar;
                 PlayerInfo.Instance.DeductHeart();
             }
         }
@@ -75,6 +79,7 @@ public class ProgressbarManager : MonoBehaviour
         failTimes = 0;
         timer = 0;
         ProgressBar = 100;
+        BigTimer.percent = ProgressBar;
     }
 
 }

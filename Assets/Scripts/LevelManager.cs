@@ -171,6 +171,7 @@ public class LevelManager : MonoBehaviour
 
         LevelEvents(0);
 
+        ProgressbarManager.Instance.StartProgressBar();
     }
 
     /// <summary>

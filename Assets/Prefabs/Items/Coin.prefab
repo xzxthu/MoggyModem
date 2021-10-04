@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 1280562043977006228}
   - component: {fileID: 1280562043977006216}
   - component: {fileID: 1280562043977006219}
-  - component: {fileID: 1280562043977006217}
   - component: {fileID: 1280562043977006218}
+  - component: {fileID: 3124673684887909079}
   m_Layer: 0
   m_Name: Coin
   m_TagString: Untagged
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 1280562043977006229}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.57, y: 0.57, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -73,8 +73,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1412682567
   m_SortingLayer: 1
-  m_SortingOrder: 20
-  m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
+  m_SortingOrder: 60
+  m_Sprite: {fileID: 21300000, guid: 78456c09b6d485643916f6485f784ff1, type: 3}
   m_Color: {r: 0.98234874, g: 1, b: 0.25, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -97,22 +97,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0378f8566a9f38b47af2000f2e5cf377, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!58 &1280562043977006217
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1280562043977006229}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
 --- !u!50 &1280562043977006218
 Rigidbody2D:
   serializedVersion: 4
@@ -134,3 +118,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
+--- !u!58 &3124673684887909079
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1280562043977006229}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.84
