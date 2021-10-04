@@ -74,7 +74,7 @@ public class mapManager : MonoBehaviour
     }
     public void mapGenerator()
     {
-        mapStyle = Random.Range(0,3);
+        mapStyle = 0;
         mapStart(mapStyle);
         mapEnd();
     }
