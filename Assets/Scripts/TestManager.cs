@@ -8,7 +8,7 @@ public class TestManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Invoke("WaitForStart", 1f);
+        Invoke("WaitForStart", 0.01f);
     }
 
     // Update is called once per frame
@@ -20,6 +20,7 @@ public class TestManager : MonoBehaviour
 
     public void WaitForStart()
     {
-        LevelManager.Instance.StartLevel();
+        LevelManager.Instance.StartMenu.SetActive(true);
+        MusicManager.Instance.StartMusic();
     }
 }

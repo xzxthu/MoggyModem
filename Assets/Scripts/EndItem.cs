@@ -23,7 +23,9 @@ public class EndItem : MonoBehaviour
 
                 // 过关动画接口 **
 
-                StartCoroutine(lateClose());
+                //StartCoroutine(lateClose());
+                hasEnd = false;
+                gameObject.SetActive(false);
             }
 
         }

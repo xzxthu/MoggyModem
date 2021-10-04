@@ -21,7 +21,11 @@ public class LevelManager : MonoBehaviour
     public ArtLetter scoreArtLetter;
     public ArtLetter packageArtLetter;
 
-    private static int[] levelUp = new int[]{0,0,1,1,1,2,3,4,5,6,7,8,9,10};
+    public GameObject StartMenu;
+    public GameObject goodJob;
+    public GameObject gameOver;
+
+    private static int[] levelUp = new int[]{0,0,1,1,1,2,2,3,3,4,5,3,6,7,8,};
 
     [HideInInspector] public GameObject LeftTile;
     [HideInInspector] public GameObject RightTile;
@@ -61,6 +65,8 @@ public class LevelManager : MonoBehaviour
     /// </summary>
     public void PassALevel()
     {
+        Debug.Log("Enter Pass a level");
+
         PassLevels++;
         packageArtLetter.showNumber = PassLevels;
 
@@ -76,7 +82,7 @@ public class LevelManager : MonoBehaviour
 
         GeneratTiles();
 
-        // 过关动画接口 **
+        goodJob.SetActive(true);
 
         ShakeManager.Instance.UpdateShakeItems();
         CoinManager.Instance.UpdateCoinItems();
@@ -96,6 +102,7 @@ public class LevelManager : MonoBehaviour
 
     private void GeneratTiles()
     {
+        Debug.Log("gener");
         List<GameObject> tiles = mapManager.Instance.mapGenerator(Difficulty);
         LeftTile = tiles[0];
         RightTile = tiles[1];
@@ -172,6 +179,8 @@ public class LevelManager : MonoBehaviour
         LevelEvents(0);
 
         ProgressbarManager.Instance.StartProgressBar();
+
+        MusicManager.Instance.StartMusic();
     }
 
     /// <summary>
@@ -184,18 +193,27 @@ public class LevelManager : MonoBehaviour
         ShakeManager.Instance.ResetShake();
         DisableAllItems();
         ProgressbarManager.Instance.StopProgressBar();
+
         PassLevels = 0;
         Score = 0;
         Difficulty = 0;
 
+        Destroy(LeftTile);
+        Destroy(RightTile);
+
         scoreArtLetter.showNumber = 0;
         packageArtLetter.showNumber = 0;
+
+        //MusicManager.Instance.StopAllMusic();
     }
     
 
     public void GameOver()
     {
         ResetLevel();
+
+        gameOver.SetActive(true);
+
         Debug.Log("Game Over!");
     }
 

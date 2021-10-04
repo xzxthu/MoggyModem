@@ -61,7 +61,7 @@ public class playerMovement : MonoBehaviour
         foreach (ContactPoint2D missileHit in collision.contacts)
         {
                 hitPoint = missileHit.point;
-                Debug.Log(hitPoint);
+                //Debug.Log(hitPoint);
         }
         
         if(collision.gameObject.tag == "wall")
