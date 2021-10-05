@@ -25,6 +25,8 @@ public class LevelManager : MonoBehaviour
     public GameObject goodJob;
     public GameObject gameOver;
 
+    public bool hasStart = false;
+
     private static int[] levelUp = new int[]{0,0,1,1,1,2,2,3,3,4,5,3,6,7,8,};
 
     [HideInInspector] public GameObject LeftTile;
@@ -171,16 +173,22 @@ public class LevelManager : MonoBehaviour
 
     public void StartLevel()
     {
+        StopAllCoroutines();
+
         GeneratTiles();
 
         LeftTile.GetComponent<ItemController>().EnableItems<StartItem>();
         RightTile.GetComponent<ItemController>().EnableItems<EndItem>();
+
+        hasStart = true;
 
         LevelEvents(0);
 
         ProgressbarManager.Instance.StartProgressBar();
 
         MusicManager.Instance.StartMusic();
+
+        FatAnimationMgr.Instance.SetIdle();
     }
 
     /// <summary>
@@ -203,10 +211,19 @@ public class LevelManager : MonoBehaviour
 
         scoreArtLetter.showNumber = 0;
         packageArtLetter.showNumber = 0;
+        StartCoroutine(LatePlayFatGameOver());
+        CatAnimationMgr.Instance.SetIdle(5);
+        
 
+        hasStart = false;
         //MusicManager.Instance.StopAllMusic();
     }
     
+    private IEnumerator LatePlayFatGameOver()
+    {
+        yield return new WaitForSeconds(1f);
+        FatAnimationMgr.Instance.SetGameOver();
+    }
 
     public void GameOver()
     {

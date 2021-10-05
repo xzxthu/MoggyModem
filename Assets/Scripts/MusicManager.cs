@@ -56,7 +56,7 @@ public class MusicManager : MonoBehaviour
     public void PlayAddMew(int nowHeart)
     {
         
-         ads[nowHeart].volume = Volume;
+         ads[nowHeart-1].volume = Volume;
         
     }
 

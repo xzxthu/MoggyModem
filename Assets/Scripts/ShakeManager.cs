@@ -98,7 +98,11 @@ public class ShakeManager : MonoBehaviour
         {
             timer = 0;
             StartCoroutine(EndShaking());
-            
+            LevelManager.Instance.LeftTile.GetComponent<ItemController>().DisableItems<ShakeItem>();
+            LevelManager.Instance.RightTile.GetComponent<ItemController>().DisableItems<ShakeItem>();
+            if(isSave) CatAnimationMgr.Instance.StartHolding();
+            FatAnimationMgr.Instance.SetShaking();
+
             return true;
         }
         return false;
@@ -120,6 +124,7 @@ public class ShakeManager : MonoBehaviour
             }
             
         }
+        
 
         for (int i = 0; i < ScreenShakeAllTheWay.Length; i++)
         {
@@ -142,19 +147,26 @@ public class ShakeManager : MonoBehaviour
         LevelManager.Instance.LeftTile.GetComponent<ItemController>().EnableItems<SaveItem>();
         LevelManager.Instance.RightTile.GetComponent<ItemController>().EnableItems<SaveItem>();
 
-        // 调用开始动画 **
+        StartCoroutine(LateCatWarning());
+        PopupManager.Instance.ShakeWarning();
+    }
+
+    private IEnumerator LateCatWarning()
+    {
+        yield return new WaitForSeconds(1f);
+        CatAnimationMgr.Instance.SetWarning();
     }
 
     public void IsSave()
     {
         isSave = true;
-        Debug.Log("is save");
+        //Debug.Log("is save");
     }
 
     public void IsNotSave()
     {
         isSave = false;
-        Debug.Log("is not save");
+        //Debug.Log("is not save");
     }
 
     public void ResetShake()
@@ -177,6 +189,9 @@ public class ShakeManager : MonoBehaviour
 
         LevelManager.Instance.LeftTile.GetComponent<ItemController>().DisableItems<SaveItem>();
         LevelManager.Instance.RightTile.GetComponent<ItemController>().DisableItems<SaveItem>();
+
+        CatAnimationMgr.Instance.EndHolding();
+        FatAnimationMgr.Instance.SetIdle();
     }
 
 }

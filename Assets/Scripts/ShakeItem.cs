@@ -13,6 +13,7 @@ public class ShakeItem : MonoBehaviour
 
             ShakeManager.Instance.StartShakeProcess();
             gameObject.SetActive(false);
+
             Debug.Log("In Mine");
             
 

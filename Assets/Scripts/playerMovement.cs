@@ -11,6 +11,9 @@ public class playerMovement : MonoBehaviour
     //[DllImport("user32.dll", EntryPoint = "SetCursorPos")]  
     //private static extern int SetCursorPos(float x, float y);
 
+    private bool isHurting;
+    private float timer;
+
     private Vector3 distanceBtMouseAndBall;
     
 	// Use this for initialization
@@ -22,11 +25,31 @@ public class playerMovement : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
     {
-        
+        if(isHurting)
+        {
+            timer += Time.deltaTime;
+            if((int)timer*10%2==0)
+            {
+                GetComponent<SpriteRenderer>().enabled = true;
+            }
+            else
+            {
+                GetComponent<SpriteRenderer>().enabled = false;
+            }
+
+            if(timer>1f)
+            {
+                timer = 0;
+                isHurting = false;
+                GetComponent<SpriteRenderer>().enabled = true;
+            }
+        }
     }
     
     void OnMouseDown()
     {
+        if (!LevelManager.Instance.hasStart) return;
+
         isDrag = true;
 
         Vector3 mousePosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10f);
@@ -34,6 +57,7 @@ public class playerMovement : MonoBehaviour
     }
     void OnMouseUp()
     {
+        
         isDrag = false;
     }
 
@@ -66,6 +90,12 @@ public class playerMovement : MonoBehaviour
         
         if(collision.gameObject.tag == "wall")
         {
+            if (!isHurting)
+            {
+                isHurting = true;
+                PlayerInfo.Instance.DeductHeart();
+            }
+
             isDrag = false;
 
             Vector3 movePos = collision.contacts[0].normal * wallSize;
@@ -95,7 +125,6 @@ public class playerMovement : MonoBehaviour
                 
             }*/
 
-            PlayerInfo.Instance.DeductHeart();
 
         }
 

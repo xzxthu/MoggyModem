@@ -22,7 +22,7 @@ public class timerControll : MonoBehaviour
         
         obj = rawUnit;
 
-        if(rawUnit!=null)
+        //if(rawUnit!=null)
         {
             for (int i = 0; i < 50; i++)
             {
@@ -41,7 +41,7 @@ public class timerControll : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (timerText != null)
+        //if (timerText != null)
         {
             timerText.GetComponent<Text>().text = percent.ToString() + "%";
 
@@ -57,13 +57,13 @@ public class timerControll : MonoBehaviour
 
         for (int i = 0; i < rawCount; i++)
         {
-            if (rawList[i] != null)
+            //if (rawList[i] != null)
                 rawList[i].SetActive(true);
         }
         for (int i = rawCount; i < 50; i++)
         {
 
-            if(rawList[i]!=null)
+            //if(rawList[i]!=null)
                 rawList[i].SetActive(false);
         }
         

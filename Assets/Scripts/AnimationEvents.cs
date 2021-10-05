@@ -8,4 +8,19 @@ public class AnimationEvents : MonoBehaviour
     {
         transform.parent.gameObject.SetActive(false);
     }
+
+    public void FixingEnd()
+    {
+        CatAnimationMgr.Instance.SetIdle(PlayerInfo.Instance.heart);
+    }
+
+    public void CloseGameObject()
+    {
+        gameObject.SetActive(false);
+    }
+
+    public void FatEnd()
+    {
+        FatAnimationMgr.Instance.SetIdle();
+    }
 }

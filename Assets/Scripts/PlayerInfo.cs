@@ -10,7 +10,7 @@ public class PlayerInfo : MonoBehaviour
     public int maxHeart = 5;//最大血量
 
     private bool hurting = false;
-    [SerializeField] private int heart;
+    public int heart;
 
     public static PlayerInfo Instance;
 
@@ -43,8 +43,8 @@ public class PlayerInfo : MonoBehaviour
             return;
         }
         heart = Mathf.Min((heart + 1), maxHeart);
-        
-        // 动画接口 **
+
+        CatAnimationMgr.Instance.SetAddHeart();
         MusicManager.Instance.StopAddMew(heart);
         HeartBar.Instance.SetHeartOn(heart);
     }
@@ -75,15 +75,19 @@ public class PlayerInfo : MonoBehaviour
         hurting = false;
 
         heart = Mathf.Max((heart - 1), 0);
-
         HeartBar.Instance.SetHeartOff(heart);
-
-        MusicManager.Instance.PlayAddMew(heart);
-
         if (heart == 0)
         {
             LevelManager.Instance.GameOver();
+            yield return null;
         }
+        else
+        {
+            
+
+            MusicManager.Instance.PlayAddMew(heart);
+        }
+        
     }
 
     /// <summary>
