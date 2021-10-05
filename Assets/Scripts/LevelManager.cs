@@ -5,16 +5,16 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour
 {
 
-    [Header("ÒÑ¾­¹ý¹ØÊý")]
+    [Header("ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½")]
     public int PassLevels = 0;
 
-    [Header("×Ü·ÖÊý")]
+    [Header("ï¿½Ü·ï¿½ï¿½ï¿½")]
     public int Score = 0;
 
-    [Header("¹ýÒ»¹ØµÃ¼¸·Ö")]
+    [Header("ï¿½ï¿½Ò»ï¿½ØµÃ¼ï¿½ï¿½ï¿½")]
     public int PassScore = 111;
 
-    [Header("ÏÖÔÚÄÑ¶È")]
+    [Header("ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¶ï¿½")]
     public int Difficulty = 0;
 
 
@@ -24,6 +24,7 @@ public class LevelManager : MonoBehaviour
     public GameObject StartMenu;
     public GameObject goodJob;
     public GameObject gameOver;
+    
 
     public bool hasStart = false;
 
@@ -59,11 +60,11 @@ public class LevelManager : MonoBehaviour
 
         scoreArtLetter.showNumber = Score;
 
-        // ÒôÀÖ½Ó¿Ú **
+        // ï¿½ï¿½ï¿½Ö½Ó¿ï¿½ **
     }
 
     /// <summary>
-    /// ¹ýÁËÒ»¹Ø
+    /// ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½
     /// </summary>
     public void PassALevel()
     {
@@ -173,6 +174,7 @@ public class LevelManager : MonoBehaviour
 
     public void StartLevel()
     {
+        
         StopAllCoroutines();
 
         GeneratTiles();
@@ -192,7 +194,7 @@ public class LevelManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ÖØÖÃËùÓÐ¹Ø¿¨
+    /// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¹Ø¿ï¿½
     /// </summary>
     public void ResetLevel()
     {

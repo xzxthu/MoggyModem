@@ -6,13 +6,15 @@ public class PlayerInfo : MonoBehaviour
 {
     [HideInInspector] public Vector3 StartPos;
 
-    public int startHeart = 4;//³õÊ¼ÑªÁ¿
-    public int maxHeart = 5;//×î´óÑªÁ¿
+    public int startHeart = 4;//ï¿½ï¿½Ê¼Ñªï¿½ï¿½
+    public int maxHeart = 5;//ï¿½ï¿½ï¿½Ñªï¿½ï¿½
 
     private bool hurting = false;
     public int heart;
 
     public static PlayerInfo Instance;
+    public GameObject player;
+    
 
     private void Awake()
     {
@@ -29,12 +31,13 @@ public class PlayerInfo : MonoBehaviour
 
     private void Start()
     {
-        StartPos = GameObject.FindWithTag("Player").transform.position;
+        
+        StartPos = player.transform.position;
         ResetCharacter();
     }
 
     /// <summary>
-    /// ¼ÓÑª
+    /// ï¿½ï¿½Ñª
     /// </summary>
     public void AddHeart()
     {
@@ -50,13 +53,13 @@ public class PlayerInfo : MonoBehaviour
     }
 
     /// <summary>
-    /// ¿ÛÑª
+    /// ï¿½ï¿½Ñª
     /// </summary>
     public void DeductHeart()
     {
         GlitchEffect.Instance.Glitch();
         
-        // ¶¯»­½Ó¿Ú **
+        // ï¿½ï¿½ï¿½ï¿½ï¿½Ó¿ï¿½ **
         
 
 
@@ -91,7 +94,7 @@ public class PlayerInfo : MonoBehaviour
     }
 
     /// <summary>
-    /// ÖØÖÃ½ÇÉ«
+    /// ï¿½ï¿½ï¿½Ã½ï¿½É«
     /// </summary>
     public void ResetCharacter()
     {
@@ -103,8 +106,8 @@ public class PlayerInfo : MonoBehaviour
 
     private void ResetPosition()
     {
-        GameObject.FindWithTag("Player").GetComponent<playerMovement>().isDrag = false;
-        GameObject.FindWithTag("Player").transform.position = StartPos;
+        player.GetComponent<playerMovement>().isDrag = false;
+        player.transform.position = StartPos;
         StartCoroutine(LateRestPos());
     }
 

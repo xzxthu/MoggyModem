@@ -288,7 +288,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 34808654}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.2, y: 0, z: 0}
+  m_LocalPosition: {x: 7, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 527467619}
@@ -3276,7 +3276,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 527467618}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 1.2, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 480918590}
@@ -3285,7 +3285,6 @@ Transform:
   - {fileID: 1945589586}
   - {fileID: 696572750}
   - {fileID: 1751347771}
-  - {fileID: 1526030443}
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3348,8 +3347,9 @@ MonoBehaviour:
   mapEndPoint: {fileID: 34808655}
   currentDifficulty: 0
   maxDifficulty: 8
-  nullobj: {fileID: 0}
+  nullobj: {fileID: 5789032773792103735, guid: d62918d100f06da4f889d261c77fc956, type: 3}
   mapStyle: 1
+  startTile: {fileID: 5789032773792103735, guid: d62918d100f06da4f889d261c77fc956, type: 3}
 --- !u!114 &527467621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4873,6 +4873,7 @@ MonoBehaviour:
   maxDifficulty: 8
   nullobj: {fileID: 0}
   mapStyle: 1
+  startTile: {fileID: 0}
 --- !u!114 &1032822234
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5838,6 +5839,7 @@ MonoBehaviour:
   startHeart: 5
   maxHeart: 5
   heart: 0
+  player: {fileID: 247643509}
 --- !u!114 &1184960356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6804,6 +6806,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 247643509}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1381540052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7184,68 +7198,6 @@ Transform:
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1275768917338361723, guid: a997503800e6b074288d905b7c199ab5, type: 3}
   m_PrefabInstance: {fileID: 1499066844}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &1526030442
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 527467619}
-    m_Modifications:
-    - target: {fileID: 4857319108497179645, guid: d3f8bb76d06bd894a978b1ce7327b6c5, type: 3}
-      propertyPath: m_Name
-      value: straight(wide)
-      objectReference: {fileID: 0}
-    - target: {fileID: 7643251892366947094, guid: d3f8bb76d06bd894a978b1ce7327b6c5, type: 3}
-      propertyPath: m_RootOrder
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 7643251892366947094, guid: d3f8bb76d06bd894a978b1ce7327b6c5, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -6.07
-      objectReference: {fileID: 0}
-    - target: {fileID: 7643251892366947094, guid: d3f8bb76d06bd894a978b1ce7327b6c5, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7643251892366947094, guid: d3f8bb76d06bd894a978b1ce7327b6c5, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7643251892366947094, guid: d3f8bb76d06bd894a978b1ce7327b6c5, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7643251892366947094, guid: d3f8bb76d06bd894a978b1ce7327b6c5, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7643251892366947094, guid: d3f8bb76d06bd894a978b1ce7327b6c5, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7643251892366947094, guid: d3f8bb76d06bd894a978b1ce7327b6c5, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7643251892366947094, guid: d3f8bb76d06bd894a978b1ce7327b6c5, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7643251892366947094, guid: d3f8bb76d06bd894a978b1ce7327b6c5, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7643251892366947094, guid: d3f8bb76d06bd894a978b1ce7327b6c5, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: d3f8bb76d06bd894a978b1ce7327b6c5, type: 3}
---- !u!4 &1526030443 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7643251892366947094, guid: d3f8bb76d06bd894a978b1ce7327b6c5, type: 3}
-  m_PrefabInstance: {fileID: 1526030442}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1529175568
 GameObject:
@@ -7946,7 +7898,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2294643325935867983, guid: 047e272d9aec03348b8fc8a07573d0fa, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.53
+      value: -6.7
       objectReference: {fileID: 0}
     - target: {fileID: 2294643325935867983, guid: 047e272d9aec03348b8fc8a07573d0fa, type: 3}
       propertyPath: m_LocalPosition.y
@@ -9634,6 +9586,10 @@ PrefabInstance:
     - target: {fileID: 8577580078036145491, guid: af5f5d69c5871da4e8f1acb13f59c817, type: 3}
       propertyPath: m_Name
       value: player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8577580078036145491, guid: af5f5d69c5871da4e8f1acb13f59c817, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8577580078036145491, guid: af5f5d69c5871da4e8f1acb13f59c817, type: 3}
       propertyPath: m_TagString
