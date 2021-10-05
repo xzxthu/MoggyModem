@@ -10,7 +10,7 @@ public class timerControll : MonoBehaviour
     public Transform pos;
     //public List<GameObject> rawList = new List<GameObject>();
     public GameObject[] rawList;
-    private GameObject obj;
+    
     public GameObject timerText;
     
     // Start is called before the first frame update
@@ -20,20 +20,18 @@ public class timerControll : MonoBehaviour
         rawList = new GameObject[50];
         //pos = this.transform;
         
-        obj = rawUnit;
 
-        //if(rawUnit!=null)
+
+        for (int i = 0; i < 50; i++)
         {
-            for (int i = 0; i < 50; i++)
-            {
-                obj = Instantiate(rawUnit);
-                obj.transform.parent = this.transform;
-                obj.transform.localPosition = new Vector3(pos.localPosition.x, pos.localPosition.y, pos.localPosition.z);
-                pos.localPosition = new Vector3(pos.localPosition.x, pos.localPosition.y + 0.07f, pos.localPosition.z);
-                obj.SetActive(false);
-                rawList[i] = obj;
-            }
+            GameObject obj = Instantiate<GameObject>(rawUnit) as GameObject;
+            obj.transform.parent = this.transform;
+            obj.transform.localPosition = new Vector3(pos.localPosition.x, pos.localPosition.y, pos.localPosition.z);
+            pos.localPosition = new Vector3(pos.localPosition.x, pos.localPosition.y + 0.07f, pos.localPosition.z);
+            obj.SetActive(false);
+            rawList[i] = obj;
         }
+
         
         //Destroy(obj);
     }
