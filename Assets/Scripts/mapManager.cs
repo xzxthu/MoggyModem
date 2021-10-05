@@ -29,7 +29,7 @@ public class mapManager : MonoBehaviour
     public int maxDifficulty;
     public GameObject nullobj;
     public int mapStyle;
-    public GameObject startTile;
+    //public GameObject startTile;
     private int overTurn;
     //public GameObject player;
     void Start()
@@ -95,8 +95,8 @@ public class mapManager : MonoBehaviour
     {
         currentDifficulty = diff;
         mapStyle = 0;
-        Instantiate(startTile, this.transform);
-        startTile.transform.localPosition = new Vector3(0, 0, 0);
+        //Instantiate(startTile, this.transform);
+        //startTile.transform.localPosition = new Vector3(0, 0, 0);
         //player.SetActive(true);
         mapStart(mapStyle);
         mapEnd();
