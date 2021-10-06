@@ -17,8 +17,6 @@ public class timerControll : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        
         float i = percent * 0.96f;
         
         float posx = r0.anchoredPosition.x;

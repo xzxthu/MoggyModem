@@ -47,7 +47,7 @@ public class FatAnimationMgr : MonoBehaviour
         Idle2.SetActive(false);
         Angry.SetActive(false);
         GameOver.SetActive(false);
-        isIdle = true;
+        isIdle = false;
     }
 
     public void SetIdle()

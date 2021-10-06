@@ -8,7 +8,7 @@ public class ButtonEvents : MonoBehaviour
     {
         LevelManager.Instance.StartLevel();
         transform.parent.gameObject.SetActive(false);
-        //GameObject.FindWithTag("Player").SetActive(true);
+        PlayerInfo.Instance.player.SetActive(true);
     }
 
     public void QuitGame()
@@ -27,5 +27,6 @@ public class ButtonEvents : MonoBehaviour
         LevelManager.Instance.StartLevel();
         transform.parent.gameObject.SetActive(false);
         HeartBar.Instance.ResetHeartBar();
+        PlayerInfo.Instance.player.SetActive(true);
     }
 }

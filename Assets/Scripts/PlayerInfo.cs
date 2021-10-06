@@ -6,8 +6,8 @@ public class PlayerInfo : MonoBehaviour
 {
     [HideInInspector] public Vector3 StartPos;
 
-    public int startHeart = 4;//��ʼѪ��
-    public int maxHeart = 5;//���Ѫ��
+    public int startHeart = 4;
+    public int maxHeart = 5;
 
     private bool hurting = false;
     public int heart;
@@ -99,6 +99,7 @@ public class PlayerInfo : MonoBehaviour
         hurting = false;
         heart = startHeart;
         ResetPosition();
+        player.GetComponent<playerMovement>().isHurting = false;
     }
 
     private void ResetPosition()

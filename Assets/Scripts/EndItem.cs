@@ -5,7 +5,21 @@ using UnityEngine;
 public class EndItem : MonoBehaviour
 {
     private bool hasEnd = false;
+    private float timer = 0;
 
+    private void Update()
+    {
+        if(hasEnd)
+        {
+            timer += Time.deltaTime;
+            if(timer>0.1)
+            {
+                hasEnd = false;
+                gameObject.SetActive(false);
+            }
+        }
+
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
 
@@ -21,19 +35,11 @@ public class EndItem : MonoBehaviour
 
                 PlayerInfo.Instance.ResetCharacter();
 
-                gameObject.SetActive(false);
 
-                StartCoroutine(lateClose());
             }
 
         }
     }
 
-    private IEnumerator lateClose()
-    {
-        yield return new WaitForSeconds(0.01f);
-        hasEnd = false;
-        gameObject.SetActive(false);
-    }
 
 }

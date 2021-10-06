@@ -6,16 +6,16 @@ using yuyu;
 public class LevelManager : MonoBehaviour
 {
 
-    [Header("�Ѿ�������")]
+    [Header("Number of Passed Levels")]
     public int PassLevels = 0;
 
-    [Header("�ܷ���")]
+    [Header("Score")]
     public int Score = 0;
 
-    [Header("��һ�صü���")]
+    [Header("Score obtaining for passing a level")]
     public int PassScore = 111;
 
-    [Header("�����Ѷ�")]
+    [Header("now difficulty")]
     public int Difficulty = 0;
 
 
@@ -73,6 +73,8 @@ public class LevelManager : MonoBehaviour
         packageArtLetter.showNumber = PassLevels;
         AddScore(PassScore * PassLevels);
         goodJob.SetActive(true);
+
+        
 
         DisableAllItems();
 
@@ -199,6 +201,7 @@ public class LevelManager : MonoBehaviour
     public void ResetLevel()
     {
         StopAllCoroutines();
+        
 
         ShakeManager.Instance.ResetShake();
         DisableAllItems();
@@ -233,7 +236,9 @@ public class LevelManager : MonoBehaviour
     {
         ResetLevel();
 
-        gameOver.SetActive(true);
+        gameOver.SetActive(true); //Game Over Object
+
+        GameObject.FindWithTag("Player").SetActive(false);
 
         Debug.Log("Game Over!");
     }

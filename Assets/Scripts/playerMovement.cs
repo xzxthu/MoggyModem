@@ -11,15 +11,21 @@ public class playerMovement : MonoBehaviour
     //[DllImport("user32.dll", EntryPoint = "SetCursorPos")]  
     //private static extern int SetCursorPos(float x, float y);
 
-    private bool isHurting;
+    private float collidRScale = 3;
+    [HideInInspector] public bool isHurting;
     private float timer;
-
+    private float colliderRidus;
     private Vector3 distanceBtMouseAndBall;
-    
+    private Vector3 recordedMousePos;
+
 	// Use this for initialization
 	void Start ()
     {
         isDrag = false;
+        colliderRidus = GetComponent<CircleCollider2D>().radius;
+        GetComponent<CircleCollider2D>().radius = colliderRidus * collidRScale;
+        transform.tag = "Untagged";
+        gameObject.layer = LayerMask.NameToLayer("Ignore");
 	}
 	
 	// Update is called once per frame
@@ -28,7 +34,7 @@ public class playerMovement : MonoBehaviour
         if(isHurting)
         {
             timer += Time.deltaTime;
-            if((int)timer*10%2==0)
+            if((int)(timer * 10) % 2 == 0)
             {
                 GetComponent<SpriteRenderer>().enabled = true;
             }
@@ -51,25 +57,39 @@ public class playerMovement : MonoBehaviour
         if (!LevelManager.Instance.hasStart) return;
 
         isDrag = true;
+        GetComponent<CircleCollider2D>().radius = colliderRidus;
+        transform.tag = "Player";
+        gameObject.layer = LayerMask.NameToLayer("Player");
+        recordedMousePos = transform.position;
 
         Vector3 mousePosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10f);
         distanceBtMouseAndBall = transform.position - Camera.main.ScreenToWorldPoint(mousePosition);
     }
     void OnMouseUp()
     {
-        
         isDrag = false;
+        GetComponent<CircleCollider2D>().radius = colliderRidus * collidRScale;
+        transform.tag = "Untagged";
+        gameObject.layer = LayerMask.NameToLayer("Ignore");
     }
 
     void OnMouseDrag()
     {
         if(isDrag)
         {
+            
+            if (Vector2.Distance(recordedMousePos, transform.position) > 1f)
+                return;
+
+            recordedMousePos = transform.position;
+            
             Vector3 mousePosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10f);
         
             Vector3 objectPosition = Camera.main.ScreenToWorldPoint(mousePosition);
         
             transform.position = objectPosition + distanceBtMouseAndBall;
+
+            
         }
         
     }
