@@ -22,7 +22,7 @@ public class timerControll : MonoBehaviour
         float i = percent * 0.96f;
         
         float posx = r0.anchoredPosition.x;
-        Debug.Log(posx);
+        //Debug.Log(posx);
         float j = posx + i;
         r1.anchoredPosition = new Vector2(j,r1.anchoredPosition.y);
         r2.anchoredPosition = new Vector2(j,r2.anchoredPosition.y);

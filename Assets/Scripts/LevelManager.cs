@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using yuyu;
 
 public class LevelManager : MonoBehaviour
 {
@@ -83,7 +84,7 @@ public class LevelManager : MonoBehaviour
         Destroy(LeftTile);
         Destroy(RightTile);
 
-        GeneratTiles();
+        GeneratTiles(Difficulty, true);
 
         goodJob.SetActive(true);
 
@@ -103,10 +104,10 @@ public class LevelManager : MonoBehaviour
 
     }
 
-    private void GeneratTiles()
+    private void GeneratTiles(int diff, bool random = false)
     {
         Debug.Log("gener");
-        List<GameObject> tiles = mapManager.Instance.mapGenerator(Difficulty);
+        GameObject[] tiles = TileManager.Instance.GeneratTiles(diff, random);
         LeftTile = tiles[0];
         RightTile = tiles[1];
     }
@@ -177,7 +178,7 @@ public class LevelManager : MonoBehaviour
         
         StopAllCoroutines();
 
-        GeneratTiles();
+        GeneratTiles(0);
 
         LeftTile.GetComponent<ItemController>().EnableItems<StartItem>();
         RightTile.GetComponent<ItemController>().EnableItems<EndItem>();
@@ -208,8 +209,10 @@ public class LevelManager : MonoBehaviour
         Score = 0;
         Difficulty = 0;
 
+        
         Destroy(LeftTile);
         Destroy(RightTile);
+
 
         scoreArtLetter.showNumber = 0;
         packageArtLetter.showNumber = 0;
