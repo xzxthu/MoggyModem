@@ -29,7 +29,7 @@ public class LevelManager : MonoBehaviour
 
     public bool hasStart = false;
 
-    private static int[] levelUp = new int[]{0,0,1,1,1,2,2,3,3,4,5,3,6,7,8,};
+    private static int[] levelUp = new int[]{0,1,3,1,1,2,2,3,3,4,5,3,6,7,8,9,10,11};
 
     [HideInInspector] public GameObject LeftTile;
     [HideInInspector] public GameObject RightTile;
@@ -58,10 +58,7 @@ public class LevelManager : MonoBehaviour
     public void AddScore(int addScore)
     {
         Score += addScore;
-
         scoreArtLetter.showNumber = Score;
-
-        // ���ֽӿ� **
     }
 
     /// <summary>
@@ -72,21 +69,23 @@ public class LevelManager : MonoBehaviour
         Debug.Log("Enter Pass a level");
 
         PassLevels++;
-        packageArtLetter.showNumber = PassLevels;
 
+        packageArtLetter.showNumber = PassLevels;
         AddScore(PassScore * PassLevels);
+        goodJob.SetActive(true);
+
         DisableAllItems();
+
         PlayerInfo.Instance.AddHeart();
         ProgressbarManager.Instance.ResetProgressBar();
-        SetDifficulty();
         ShakeManager.Instance.ResetShake();
 
         Destroy(LeftTile);
         Destroy(RightTile);
 
-        GeneratTiles(Difficulty, true);
+        SetDifficulty();
 
-        goodJob.SetActive(true);
+        GeneratTiles(Difficulty, true);
 
         ShakeManager.Instance.UpdateShakeItems();
         CoinManager.Instance.UpdateCoinItems();

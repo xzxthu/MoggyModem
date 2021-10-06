@@ -21,11 +21,9 @@ public class EndItem : MonoBehaviour
 
                 PlayerInfo.Instance.ResetCharacter();
 
-                // 过关动画接口 **
-
-                //StartCoroutine(lateClose());
-                hasEnd = false;
                 gameObject.SetActive(false);
+
+                StartCoroutine(lateClose());
             }
 
         }
@@ -36,7 +34,6 @@ public class EndItem : MonoBehaviour
         yield return new WaitForSeconds(0.01f);
         hasEnd = false;
         gameObject.SetActive(false);
-
     }
 
 }

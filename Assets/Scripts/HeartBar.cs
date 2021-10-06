@@ -20,14 +20,20 @@ public class HeartBar : MonoBehaviour
         }
     }
 
-    public void SetHeartOff(int nowHeart)
-    {
-        hearts[nowHeart].SetActive(true);
-    }
 
-    public void SetHeartOn(int nowHeart)
+    public void SetHeart(int nowHeart)
     {
-        hearts[nowHeart-1].SetActive(false);
+        for(int i = 0; i< hearts.Length;i++)
+        {
+            if(i<nowHeart)
+            {
+                hearts[i].SetActive(false);
+            }
+            else
+            {
+                hearts[i].SetActive(true);
+            }
+        }
     }
 
     public void ResetHeartBar()

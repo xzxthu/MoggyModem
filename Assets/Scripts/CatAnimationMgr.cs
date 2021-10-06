@@ -10,7 +10,7 @@ public class CatAnimationMgr : MonoBehaviour
     public GameObject Holding;
     public GameObject Fixing;
 
-
+    private bool isIdle;
 
     public static CatAnimationMgr Instance;
     private void Awake()
@@ -33,7 +33,7 @@ public class CatAnimationMgr : MonoBehaviour
 
     private void Update()
     {
-        if (PlayerInfo.Instance.heart < 3) return;
+        if (PlayerInfo.Instance.heart < 3 || !isIdle) return;
 
         if(Random.Range(0,1000)>998)
         {
@@ -56,12 +56,15 @@ public class CatAnimationMgr : MonoBehaviour
         Holding.SetActive(false);
         
         Fixing.SetActive(false);
+
+        isIdle = false;
     }
 
     public void SetIdle(int heart)
     {
         CloseAll();
         Idle[5-heart].SetActive(true);
+        isIdle = true;
     }
 
     public void SetWarning()

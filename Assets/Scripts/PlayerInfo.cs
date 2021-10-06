@@ -43,13 +43,16 @@ public class PlayerInfo : MonoBehaviour
     {
         if(heart+1> maxHeart)
         {
+            HeartBar.Instance.SetHeart(maxHeart);
             return;
         }
+
         heart = Mathf.Min((heart + 1), maxHeart);
+        Debug.Log("Add Heart");
 
         CatAnimationMgr.Instance.SetAddHeart();
         MusicManager.Instance.StopAddMew(heart);
-        HeartBar.Instance.SetHeartOn(heart);
+        HeartBar.Instance.SetHeart(heart);
     }
 
     /// <summary>
@@ -58,10 +61,6 @@ public class PlayerInfo : MonoBehaviour
     public void DeductHeart()
     {
         GlitchEffect.Instance.Glitch();
-        
-        // �����ӿ� **
-        
-
 
         if (!hurting)
         {
@@ -78,7 +77,7 @@ public class PlayerInfo : MonoBehaviour
         hurting = false;
 
         heart = Mathf.Max((heart - 1), 0);
-        HeartBar.Instance.SetHeartOff(heart);
+        HeartBar.Instance.SetHeart(heart);
         if (heart == 0)
         {
             LevelManager.Instance.GameOver();
@@ -86,8 +85,6 @@ public class PlayerInfo : MonoBehaviour
         }
         else
         {
-            
-
             MusicManager.Instance.PlayAddMew(heart);
         }
         
@@ -108,10 +105,10 @@ public class PlayerInfo : MonoBehaviour
     {
         player.GetComponent<playerMovement>().isDrag = false;
         player.transform.position = StartPos;
-        StartCoroutine(LateRestPos());
+        StartCoroutine(LateResetPos());
     }
 
-    private IEnumerator LateRestPos()
+    private IEnumerator LateResetPos()
     {
         yield return new WaitForSeconds(0.01f);
         

@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameOverEvents : MonoBehaviour
+public class ButtonEvents : MonoBehaviour
 {
     public void StartGame()
     {
         LevelManager.Instance.StartLevel();
         transform.parent.gameObject.SetActive(false);
+        //GameObject.FindWithTag("Player").SetActive(true);
     }
 
     public void QuitGame()

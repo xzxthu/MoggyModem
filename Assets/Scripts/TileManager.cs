@@ -103,16 +103,21 @@ public class TileManager : MonoBehaviour
 
         if(randomDiff)
         {
-            int randomSeed = Random.Range(0, 4);
+            int randomSeed = Random.Range(0, 5);
             if (randomSeed==0)
-            {
-                getDiff = Mathf.Max(getDiff-2,0);
-            }
-            else if(randomSeed==1)
             {
                 getDiff = Mathf.Max(getDiff - 1, 0);
             }
+            else if(randomSeed==1)
+            {
+                getDiff = Mathf.Max(getDiff - 2, 0);
+            }
             else if(randomSeed == 2)
+            {
+                getDiff = Mathf.Max(getDiff - 3, 0);
+
+            }
+            else if(randomSeed == 3)
             {
                 getDiff = Mathf.Min(getDiff + 1, maxDiff);
 
