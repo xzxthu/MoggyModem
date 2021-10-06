@@ -79,6 +79,7 @@ public class playerMovement : MonoBehaviour
         Vector3 mousePosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10f);
         distanceBtMouseAndBall = transform.position - Camera.main.ScreenToWorldPoint(mousePosition);
     }
+
     void OnMouseUp()
     {
         isDrag = false;
@@ -129,6 +130,7 @@ public class playerMovement : MonoBehaviour
             {
                 isHurting = true;
                 PlayerInfo.Instance.DeductHeart();
+                hindTimer = 0;
             }
 
             isDrag = false;
