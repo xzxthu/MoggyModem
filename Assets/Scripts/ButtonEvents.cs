@@ -22,6 +22,11 @@ public class ButtonEvents : MonoBehaviour
 
     public void TryAgain()
     {
+        LevelManager.Instance.scoreArtLetter.showNumber = 0;
+        LevelManager.Instance.packageArtLetter.showNumber = 0;
+        LevelManager.Instance.scoreArtLetter.StopKeepBlink();
+        LevelManager.Instance.packageArtLetter.StopKeepBlink();
+
         MusicManager.Instance.StopAllMusic();
         PlayerInfo.Instance.ResetCharacter();
         LevelManager.Instance.StartLevel();

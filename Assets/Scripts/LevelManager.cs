@@ -59,6 +59,7 @@ public class LevelManager : MonoBehaviour
     {
         Score += addScore;
         scoreArtLetter.showNumber = Score;
+        scoreArtLetter.Blink();
     }
 
     /// <summary>
@@ -71,9 +72,9 @@ public class LevelManager : MonoBehaviour
         PassLevels++;
 
         packageArtLetter.showNumber = PassLevels;
+        packageArtLetter.Blink();
         AddScore(PassScore * PassLevels);
         goodJob.SetActive(true);
-
         
 
         DisableAllItems();
@@ -216,8 +217,8 @@ public class LevelManager : MonoBehaviour
         Destroy(RightTile);
 
 
-        scoreArtLetter.showNumber = 0;
-        packageArtLetter.showNumber = 0;
+        //scoreArtLetter.showNumber = 0;
+        //packageArtLetter.showNumber = 0;
         StartCoroutine(LatePlayFatGameOver());
         CatAnimationMgr.Instance.SetIdle(5);
         
@@ -240,7 +241,8 @@ public class LevelManager : MonoBehaviour
 
         PlayerInfo.Instance.player.SetActive(false);
 
-        Debug.Log("Game Over!");
+        scoreArtLetter.StartKeepBlink();
+        packageArtLetter.StartKeepBlink();
     }
 
 }

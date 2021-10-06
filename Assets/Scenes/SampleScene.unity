@@ -4052,7 +4052,7 @@ MonoBehaviour:
   StartPos: {x: 0, y: 0, z: 0}
   startHeart: 5
   maxHeart: 5
-  hurtLight: {fileID: 0}
+  hurtLight: {fileID: 87915801}
   heart: 0
   player: {fileID: 247643509}
 --- !u!114 &1184960356

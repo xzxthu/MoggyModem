@@ -13,10 +13,12 @@ public class ArtLetter : MonoBehaviour
     
     private RawImage[] images;
     private float localScaleX = 0.47f;
+    private Animator[] anims;
 
     private void Start()
     {
         InitialNumbers();
+        anims = GetComponentsInChildren<Animator>();
     }
 
     private void Update()
@@ -63,6 +65,30 @@ public class ArtLetter : MonoBehaviour
             images[i].gameObject.GetComponent<RectTransform>().localScale = new Vector3(localScaleX * lettersSize, lettersSize, 1);
         }
     }    
+
+    public void Blink()
+    {
+        foreach(Animator anim in anims)
+        {
+            anim.SetTrigger("Blink");
+        }
+    }
+
+    public void StartKeepBlink()
+    {
+        foreach (Animator anim in anims)
+        {
+            anim.SetBool("KeepBlink", true);
+        }
+    }
+
+    public void StopKeepBlink()
+    {
+        foreach (Animator anim in anims)
+        {
+            anim.SetBool("KeepBlink", false);
+        }
+    }
 }
 
 
