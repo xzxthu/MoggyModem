@@ -8,9 +8,11 @@ public class PlayerInfo : MonoBehaviour
 
     public int startHeart = 4;
     public int maxHeart = 5;
+    public GameObject hurtLight;
+
+    public int heart;
 
     private bool hurting = false;
-    public int heart;
 
     public static PlayerInfo Instance;
     public GameObject player;
@@ -61,6 +63,7 @@ public class PlayerInfo : MonoBehaviour
     public void DeductHeart()
     {
         GlitchEffect.Instance.Glitch();
+        hurtLight.SetActive(true);
 
         if (!hurting)
         {
