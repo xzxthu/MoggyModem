@@ -238,7 +238,7 @@ public class LevelManager : MonoBehaviour
 
         gameOver.SetActive(true); //Game Over Object
 
-        GameObject.FindWithTag("Player").SetActive(false);
+        PlayerInfo.Instance.player.SetActive(false);
 
         Debug.Log("Game Over!");
     }

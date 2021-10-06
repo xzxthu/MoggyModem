@@ -100,6 +100,7 @@ public class PlayerInfo : MonoBehaviour
         heart = startHeart;
         ResetPosition();
         player.GetComponent<playerMovement>().isHurting = false;
+        player.GetComponent<playerMovement>().Hint.SetActive(false);
     }
 
     private void ResetPosition()

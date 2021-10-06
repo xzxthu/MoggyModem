@@ -8,12 +8,16 @@ public class playerMovement : MonoBehaviour
  
     public float wallSize;
     public bool isDrag;
+
+    public GameObject Hint;
+
     //[DllImport("user32.dll", EntryPoint = "SetCursorPos")]  
     //private static extern int SetCursorPos(float x, float y);
 
     private float collidRScale = 3;
     [HideInInspector] public bool isHurting;
     private float timer;
+    private float hindTimer;
     private float colliderRidus;
     private Vector3 distanceBtMouseAndBall;
     private Vector3 recordedMousePos;
@@ -50,6 +54,15 @@ public class playerMovement : MonoBehaviour
                 GetComponent<SpriteRenderer>().enabled = true;
             }
         }
+
+        if(!isDrag)
+        {
+            hindTimer += Time.deltaTime;
+            if(hindTimer>2f && hindTimer<2.01f)
+            {
+                Hint.SetActive(true);
+            }
+        }
     }
     
     void OnMouseDown()
@@ -61,6 +74,7 @@ public class playerMovement : MonoBehaviour
         transform.tag = "Player";
         gameObject.layer = LayerMask.NameToLayer("Player");
         recordedMousePos = transform.position;
+        Hint.SetActive(false);
 
         Vector3 mousePosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10f);
         distanceBtMouseAndBall = transform.position - Camera.main.ScreenToWorldPoint(mousePosition);
@@ -68,6 +82,7 @@ public class playerMovement : MonoBehaviour
     void OnMouseUp()
     {
         isDrag = false;
+        hindTimer = 0;
         GetComponent<CircleCollider2D>().radius = colliderRidus * collidRScale;
         transform.tag = "Untagged";
         gameObject.layer = LayerMask.NameToLayer("Ignore");
