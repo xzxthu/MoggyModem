@@ -5,10 +5,10 @@ using UnityEngine;
 public class ShakeManager : MonoBehaviour
 {
     [Header("过多久开始震动")]
-    public float WaitForShakeTime = 3f;
+    public float WaitForShakeTime = 1f;
 
     [Header("震多久")]
-    public float ShakingTime = 2f;
+    public float ShakingTime = 0.32f;
 
     [Header("摇哪些东西")]
     public Transform[] ScreenShakeInNotSave;
@@ -98,8 +98,7 @@ public class ShakeManager : MonoBehaviour
         {
             timer = 0;
             StartCoroutine(EndShaking());
-            LevelManager.Instance.LeftTile.GetComponent<ItemController>().DisableItems<ShakeItem>();
-            LevelManager.Instance.RightTile.GetComponent<ItemController>().DisableItems<ShakeItem>();
+            
             if(isSave) CatAnimationMgr.Instance.StartHolding();
             FatAnimationMgr.Instance.SetShaking();
 
@@ -146,6 +145,8 @@ public class ShakeManager : MonoBehaviour
         
         LevelManager.Instance.LeftTile.GetComponent<ItemController>().EnableItems<SaveItem>();
         LevelManager.Instance.RightTile.GetComponent<ItemController>().EnableItems<SaveItem>();
+        LevelManager.Instance.LeftTile.GetComponent<ItemController>().DisableItems<ShakeItem>();
+        LevelManager.Instance.RightTile.GetComponent<ItemController>().DisableItems<ShakeItem>();
 
         StartCoroutine(LateCatWarning());
         PopupManager.Instance.ShakeWarning();
@@ -153,20 +154,20 @@ public class ShakeManager : MonoBehaviour
 
     private IEnumerator LateCatWarning()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         CatAnimationMgr.Instance.SetWarning();
     }
 
     public void IsSave()
     {
         isSave = true;
-        //Debug.Log("is save");
+        Debug.Log("is save");
     }
 
     public void IsNotSave()
     {
         isSave = false;
-        //Debug.Log("is not save");
+        Debug.Log("is not save");
     }
 
     public void ResetShake()

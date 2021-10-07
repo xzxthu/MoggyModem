@@ -91,8 +91,8 @@ public class TileManager : MonoBehaviour
         LeftTile.transform.localScale = Vector3.one;
         RightTile.transform.localScale = Vector3.one;
 
-        Debug.Log(LeftTile.name);
-        Debug.Log(RightTile.name);
+        //Debug.Log(LeftTile.name);
+        //Debug.Log(RightTile.name);
 
         return new GameObject[] { LeftTile, RightTile };
     }

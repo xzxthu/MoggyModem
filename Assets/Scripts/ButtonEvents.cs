@@ -9,6 +9,7 @@ public class ButtonEvents : MonoBehaviour
         LevelManager.Instance.StartLevel();
         transform.parent.gameObject.SetActive(false);
         PlayerInfo.Instance.player.SetActive(true);
+        MusicManager.Instance.PlaySEButton();
     }
 
     public void QuitGame()
@@ -22,16 +23,20 @@ public class ButtonEvents : MonoBehaviour
 
     public void TryAgain()
     {
-        LevelManager.Instance.scoreArtLetter.showNumber = 0;
-        LevelManager.Instance.packageArtLetter.showNumber = 0;
+        LevelManager.Instance.scoreArtLetter.SetShowNumber(0);
+        LevelManager.Instance.packageArtLetter.SetShowNumber(0);
+        LevelManager.Instance.gameOverScore.SetShowNumber(0);
         LevelManager.Instance.scoreArtLetter.StopKeepBlink();
         LevelManager.Instance.packageArtLetter.StopKeepBlink();
 
-        MusicManager.Instance.StopAllMusic();
+        MusicManager.Instance.StartMusic();
         PlayerInfo.Instance.ResetCharacter();
         LevelManager.Instance.StartLevel();
         transform.parent.gameObject.SetActive(false);
         HeartBar.Instance.ResetHeartBar();
         PlayerInfo.Instance.player.SetActive(true);
+
+        MusicManager.Instance.PlaySEButton();
+
     }
 }

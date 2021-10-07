@@ -9,22 +9,42 @@ public class ArtLetter : MonoBehaviour
     public int num = 6;
     [Range(0,1)] public float lettersSize = 1;
     public float wordSpace;
-    public int showNumber;
+    [SerializeField] private int showNumber;
+    private int storedNumber;
     
     private RawImage[] images;
     private float localScaleX = 0.47f;
     private Animator[] anims;
+    private bool startAddEffect = false;
 
     private void Start()
     {
         InitialNumbers();
         anims = GetComponentsInChildren<Animator>();
+        showNumber = 0;
+        storedNumber = 0;
+        startAddEffect = false;
     }
 
     private void Update()
     {
-        SetLetters(lettersSize, wordSpace);
-        UpdateShowLetters();
+        //SetLetters(lettersSize, wordSpace);
+        //UpdateShowLetters();
+
+        if(startAddEffect)
+        {
+            if(showNumber>=storedNumber)
+            {
+                showNumber = storedNumber;
+                startAddEffect = false;
+                //Debug.Log("到了");
+                UpdateShowLetters();
+                return;
+            }
+
+            showNumber += Mathf.Max(((int)(storedNumber-showNumber)/20),1);
+            UpdateShowLetters();
+        }
     }
 
     private void InitialNumbers()
@@ -50,6 +70,20 @@ public class ArtLetter : MonoBehaviour
         {
             images[i].texture = letters[Mathf.FloorToInt((showNumber / Mathf.Pow(10, i))) % 10];
         }
+    }
+
+    public void SetShowNumberWithEffect(int num)
+    {
+        storedNumber = num;
+        startAddEffect = true;
+    }
+
+    public void SetShowNumber(int num)
+    {
+        
+        showNumber = num;
+        UpdateShowLetters();
+
     }
 
     /// <summary>

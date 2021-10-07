@@ -11,7 +11,7 @@ public class AnimationEvents : MonoBehaviour
 
     public void FixingEnd()
     {
-        CatAnimationMgr.Instance.SetIdle(PlayerInfo.Instance.heart);
+        CatAnimationMgr.Instance.SetIdle(PlayerInfo.Instance.GetHeart());
     }
 
     public void CloseGameObject()
@@ -22,5 +22,10 @@ public class AnimationEvents : MonoBehaviour
     public void FatEnd()
     {
         FatAnimationMgr.Instance.SetIdle();
+    }
+
+    public void FatBreakSE()
+    {
+        MusicManager.Instance.PlaySEBreakScreen();
     }
 }

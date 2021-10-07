@@ -22,8 +22,7 @@ public class UIManager: MonoBehaviour
         {
             Time.timeScale = 0;
             pauseMenu.gameObject.SetActive(true);
-            // 默认值是 1，设置为 0.5f，则是把速度降低一半，设置为 0 则暂停
-            // 设置为 5 则为 5 倍速
+            
             gamePause = true;
         }
 

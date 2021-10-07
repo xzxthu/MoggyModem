@@ -21,6 +21,7 @@ public class LevelManager : MonoBehaviour
 
     public ArtLetter scoreArtLetter;
     public ArtLetter packageArtLetter;
+    public ArtLetter gameOverScore;
 
     public GameObject StartMenu;
     public GameObject goodJob;
@@ -29,7 +30,7 @@ public class LevelManager : MonoBehaviour
 
     public bool hasStart = false;
 
-    private static int[] levelUp = new int[]{0,1,3,1,1,2,2,3,3,4,5,3,6,7,8,9,10,11};
+    private static int[] levelUp = new int[]{0,2,1,3,1,2,2,3,3,4,5,3,6,7,8,9,10,11};
 
     [HideInInspector] public GameObject LeftTile;
     [HideInInspector] public GameObject RightTile;
@@ -53,35 +54,38 @@ public class LevelManager : MonoBehaviour
     private void Start()
     {
         //ResetLevel();
+        gameOver.SetActive(false);
     }
 
     public void AddScore(int addScore)
     {
         Score += addScore;
-        scoreArtLetter.showNumber = Score;
+        scoreArtLetter.SetShowNumberWithEffect(Score);
         scoreArtLetter.Blink();
     }
 
     /// <summary>
-    /// ����һ��
+    /// 过关
     /// </summary>
     public void PassALevel()
     {
         Debug.Log("Enter Pass a level");
 
+        //StopAllCoroutines();
+
         PassLevels++;
 
-        packageArtLetter.showNumber = PassLevels;
+        packageArtLetter.SetShowNumber(PassLevels);
         packageArtLetter.Blink();
         AddScore(PassScore * PassLevels);
         goodJob.SetActive(true);
         
-
         DisableAllItems();
 
         PlayerInfo.Instance.AddHeart();
         ProgressbarManager.Instance.ResetProgressBar();
         ShakeManager.Instance.ResetShake();
+        MusicManager.Instance.PlaySEElectron();
 
         Destroy(LeftTile);
         Destroy(RightTile);
@@ -108,7 +112,7 @@ public class LevelManager : MonoBehaviour
 
     private void GeneratTiles(int diff, bool random = false)
     {
-        Debug.Log("gener");
+        //Debug.Log("gener");
         GameObject[] tiles = TileManager.Instance.GeneratTiles(diff, random);
         LeftTile = tiles[0];
         RightTile = tiles[1];
@@ -191,9 +195,12 @@ public class LevelManager : MonoBehaviour
 
         ProgressbarManager.Instance.StartProgressBar();
 
-        MusicManager.Instance.StartMusic();
+        MusicManager.Instance.StartMusic(true);
 
         FatAnimationMgr.Instance.SetIdle();
+
+        CatAnimationMgr.Instance.SetIdle(5);
+
     }
 
     /// <summary>
@@ -220,7 +227,6 @@ public class LevelManager : MonoBehaviour
         //scoreArtLetter.showNumber = 0;
         //packageArtLetter.showNumber = 0;
         StartCoroutine(LatePlayFatGameOver());
-        CatAnimationMgr.Instance.SetIdle(5);
         
 
         hasStart = false;
@@ -235,14 +241,19 @@ public class LevelManager : MonoBehaviour
 
     public void GameOver()
     {
-        ResetLevel();
-
         gameOver.SetActive(true); //Game Over Object
+        gameOverScore.SetShowNumberWithEffect(Score);
+
+        ResetLevel();
 
         PlayerInfo.Instance.player.SetActive(false);
 
         scoreArtLetter.StartKeepBlink();
         packageArtLetter.StartKeepBlink();
+        
+        CatAnimationMgr.Instance.SetGameOver();
+        
     }
+
 
 }

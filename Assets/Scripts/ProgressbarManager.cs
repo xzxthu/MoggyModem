@@ -52,6 +52,8 @@ public class ProgressbarManager : MonoBehaviour
                 timer = TimeForOneTurn * (1f-  1f/ (2f * failTimes));
                 ProgressBar = (int)(100 * (1f - timer / TimeForOneTurn));
                 BigTimer.percent = ProgressBar;
+
+                Debug.Log("OverTime");
                 PlayerInfo.Instance.DeductHeart();
             }
         }

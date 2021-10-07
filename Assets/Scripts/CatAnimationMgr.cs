@@ -9,6 +9,7 @@ public class CatAnimationMgr : MonoBehaviour
     public GameObject AddHeart;
     public GameObject Holding;
     public GameObject Fixing;
+    public GameObject CatGameOver;
 
     private bool isIdle;
 
@@ -33,7 +34,7 @@ public class CatAnimationMgr : MonoBehaviour
 
     private void Update()
     {
-        if (PlayerInfo.Instance.heart < 3 || !isIdle) return;
+        if (PlayerInfo.Instance.GetHeart() < 3 || !isIdle) return;
 
         if(Random.Range(0,1000)>998)
         {
@@ -57,6 +58,8 @@ public class CatAnimationMgr : MonoBehaviour
         
         Fixing.SetActive(false);
 
+        CatGameOver.SetActive(false);
+
         isIdle = false;
     }
 
@@ -77,7 +80,7 @@ public class CatAnimationMgr : MonoBehaviour
     private IEnumerator LatePlayHolding()
     {
         yield return new WaitForSeconds(8f/12f);
-        SetIdle(PlayerInfo.Instance.heart);
+        SetIdle(PlayerInfo.Instance.GetHeart());
     }
 
     public void StartHolding()
@@ -97,4 +100,11 @@ public class CatAnimationMgr : MonoBehaviour
         AddHeart.SetActive(true);
     }
 
+    public void SetGameOver()
+    {
+        CloseAll();
+        CatGameOver.SetActive(true);
+    }
 }
+
+

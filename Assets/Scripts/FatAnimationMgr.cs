@@ -8,6 +8,7 @@ public class FatAnimationMgr : MonoBehaviour
     public GameObject Idle2;
     public GameObject Angry;
     public GameObject GameOver;
+    
 
     private bool isIdle = true;
 

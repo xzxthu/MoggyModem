@@ -29,11 +29,11 @@ public class EndItem : MonoBehaviour
             {
                 hasEnd = true;
 
-                Debug.Log("Pass Level");
+                //Debug.Log("Pass Level");
 
                 LevelManager.Instance.PassALevel();
 
-                PlayerInfo.Instance.ResetCharacter();
+                PlayerInfo.Instance.ResetPosition();
 
 
             }
