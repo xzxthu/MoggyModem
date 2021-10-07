@@ -29,7 +29,7 @@ public class LevelManager : MonoBehaviour
 
     public bool hasStart = false;
 
-    private static int[] levelUp = new int[]{0,1,3,1,1,2,2,3,3,4,5,3,6,7,8,9,10,11};
+    private static int[] levelUp = new int[]{0,2,1,3,1,2,2,3,3,4,5,3,6,7,8,9,10,11};
 
     [HideInInspector] public GameObject LeftTile;
     [HideInInspector] public GameObject RightTile;
@@ -194,6 +194,9 @@ public class LevelManager : MonoBehaviour
         MusicManager.Instance.StartMusic(true);
 
         FatAnimationMgr.Instance.SetIdle();
+
+        CatAnimationMgr.Instance.SetIdle(5);
+
     }
 
     /// <summary>
@@ -220,7 +223,6 @@ public class LevelManager : MonoBehaviour
         //scoreArtLetter.showNumber = 0;
         //packageArtLetter.showNumber = 0;
         StartCoroutine(LatePlayFatGameOver());
-        CatAnimationMgr.Instance.SetIdle(5);
         
 
         hasStart = false;
@@ -244,6 +246,7 @@ public class LevelManager : MonoBehaviour
         scoreArtLetter.StartKeepBlink();
         packageArtLetter.StartKeepBlink();
 
+        CatAnimationMgr.Instance.SetGameOver();
         
     }
 

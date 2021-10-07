@@ -9,6 +9,7 @@ public class CatAnimationMgr : MonoBehaviour
     public GameObject AddHeart;
     public GameObject Holding;
     public GameObject Fixing;
+    public GameObject CatGameOver;
 
     private bool isIdle;
 
@@ -57,6 +58,8 @@ public class CatAnimationMgr : MonoBehaviour
         
         Fixing.SetActive(false);
 
+        CatGameOver.SetActive(false);
+
         isIdle = false;
     }
 
@@ -97,4 +100,11 @@ public class CatAnimationMgr : MonoBehaviour
         AddHeart.SetActive(true);
     }
 
+    public void SetGameOver()
+    {
+        CloseAll();
+        CatGameOver.SetActive(true);
+    }
 }
+
+

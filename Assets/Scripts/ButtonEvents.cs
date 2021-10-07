@@ -36,5 +36,6 @@ public class ButtonEvents : MonoBehaviour
         PlayerInfo.Instance.player.SetActive(true);
 
         MusicManager.Instance.PlaySEButton();
+
     }
 }

@@ -23,7 +23,7 @@ public class MusicManager : MonoBehaviour
     public AudioClip electron;
     public AudioClip button;
 
-    private float[] musicVolume = new float[] { 0.5f, 0.5f,0.75f,1,1 };
+    private float[] musicVolume = new float[] { 0.1f, 0.2f,0.2f, 0.4f, 0.5f };
 
     public static MusicManager Instance;
 
