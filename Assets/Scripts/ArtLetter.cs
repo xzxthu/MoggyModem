@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class ArtLetter : MonoBehaviour
 {
+    public bool ShowZero = true;
     public Texture[] letters;
     public int num = 6;
     [Range(0,1)] public float lettersSize = 1;
@@ -66,9 +67,17 @@ public class ArtLetter : MonoBehaviour
     /// </summary>
     public void UpdateShowLetters()
     {
+        int howLong = Mathf.FloorToInt(Mathf.Log10(showNumber))+1;
+        Debug.Log(howLong);
+
         for (int i = 0; i < num; i++)
         {
             images[i].texture = letters[Mathf.FloorToInt((showNumber / Mathf.Pow(10, i))) % 10];
+
+            if(!ShowZero)
+            {
+                images[i].enabled = !(i > howLong - 1) ;
+            }
         }
     }
 

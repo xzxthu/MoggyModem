@@ -65,7 +65,7 @@ public class PlayerInfo : MonoBehaviour
 
         int addHeart = heart + 1;
         SetHeart(Mathf.Min(addHeart, maxHeart));
-        Debug.Log("Add Heart and now is " + heart);
+        //Debug.Log("Add Heart and now is " + heart);
 
         CatAnimationMgr.Instance.SetAddHeart();
         MusicManager.Instance.SetMusic(heart);
@@ -94,7 +94,7 @@ public class PlayerInfo : MonoBehaviour
         hurting = false;
         int minusHeart = heart - 1;
         heart = Mathf.Max(minusHeart, 0);
-        Debug.Log("Reduce Heart and now is " + heart);
+        //Debug.Log("Reduce Heart and now is " + heart);
         HeartBar.Instance.SetHeart(heart);
 
         if (heart == 0)
