@@ -32,6 +32,8 @@ public class ItemManager : BaseManager<ItemManager>
     /// <param name="tile"></param>
     public List<T> UpadteItems<T>(GameObject tile) where T : MonoBehaviour
     {
+        if (!dicItem.ContainsKey(tile)) return null;
+
         return GetItemsList<T>(tile);
     }
 }

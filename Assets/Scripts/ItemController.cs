@@ -26,6 +26,8 @@ public class ItemController : MonoBehaviour
     private void FindChildren<T>() where T : MonoBehaviour
     {
         T[] items = this.GetComponentsInChildren<T>();
+        if (items == null) return;
+
         for (int i = 0; i < items.Length; ++i)
         {
 
@@ -42,7 +44,6 @@ public class ItemController : MonoBehaviour
 
     public void DisableItems<T>() where T : MonoBehaviour
     {
-
         for (int i = 0; i < ItemManager.GetInstance().dicItem[transform.gameObject].Count; ++i)
         {
             if (ItemManager.GetInstance().dicItem[transform.gameObject][i] is T)
