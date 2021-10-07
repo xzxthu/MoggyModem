@@ -201,6 +201,8 @@ public class LevelManager : MonoBehaviour
 
         CatAnimationMgr.Instance.SetIdle(5);
 
+        UIManager.Instance.pauseMenu.SetActive(false);
+
     }
 
     /// <summary>

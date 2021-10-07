@@ -39,4 +39,13 @@ public class ButtonEvents : MonoBehaviour
         MusicManager.Instance.PlaySEButton();
 
     }
+
+    public void Replay()
+    {
+        Time.timeScale = 1;
+        UIManager.Instance.gamePause = false;
+        UIManager.Instance.pauseMenu.SetActive(false);
+        CatAnimationMgr.Instance.SetIdle(PlayerInfo.Instance.GetHeart());
+        LevelManager.Instance.hasStart = true;
+    }
 }

@@ -67,7 +67,7 @@ public class playerMovement : MonoBehaviour
     
     void OnMouseDown()
     {
-        if (!LevelManager.Instance.hasStart) return;
+        if (!LevelManager.Instance.hasStart || UIManager.Instance.gamePause) return;
 
         isDrag = true;
         GetComponent<CircleCollider2D>().radius = colliderRidus;
