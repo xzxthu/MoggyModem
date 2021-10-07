@@ -76,12 +76,12 @@ public class LevelManager : MonoBehaviour
         AddScore(PassScore * PassLevels);
         goodJob.SetActive(true);
         
-
         DisableAllItems();
 
         PlayerInfo.Instance.AddHeart();
         ProgressbarManager.Instance.ResetProgressBar();
         ShakeManager.Instance.ResetShake();
+        MusicManager.Instance.PlaySEElectron();
 
         Destroy(LeftTile);
         Destroy(RightTile);
@@ -243,6 +243,8 @@ public class LevelManager : MonoBehaviour
 
         scoreArtLetter.StartKeepBlink();
         packageArtLetter.StartKeepBlink();
+
+        
     }
 
 }

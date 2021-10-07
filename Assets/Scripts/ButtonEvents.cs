@@ -9,6 +9,7 @@ public class ButtonEvents : MonoBehaviour
         LevelManager.Instance.StartLevel();
         transform.parent.gameObject.SetActive(false);
         PlayerInfo.Instance.player.SetActive(true);
+        MusicManager.Instance.PlaySEButton();
     }
 
     public void QuitGame()
@@ -33,5 +34,7 @@ public class ButtonEvents : MonoBehaviour
         transform.parent.gameObject.SetActive(false);
         HeartBar.Instance.ResetHeartBar();
         PlayerInfo.Instance.player.SetActive(true);
+
+        MusicManager.Instance.PlaySEButton();
     }
 }

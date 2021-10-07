@@ -23,4 +23,9 @@ public class AnimationEvents : MonoBehaviour
     {
         FatAnimationMgr.Instance.SetIdle();
     }
+
+    public void FatBreakSE()
+    {
+        MusicManager.Instance.PlaySEBreakScreen();
+    }
 }

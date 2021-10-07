@@ -11,6 +11,8 @@ public class CoinItem : MonoBehaviour
         {
             //Debug.Log("Enter Coin");
 
+            MusicManager.Instance.PlaySECoin();
+
             LevelManager.Instance.AddScore(CoinManager.Instance.CoinScore * (LevelManager.Instance.PassLevels+1));
 
             gameObject.SetActive(false);

@@ -79,6 +79,7 @@ public class PlayerInfo : MonoBehaviour
     {
         GlitchEffect.Instance.Glitch();
         hurtLight.SetActive(true);
+        MusicManager.Instance.PlaySEHurt();
 
         if (!hurting)
         {
