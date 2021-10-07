@@ -27,7 +27,7 @@ public class ButtonEvents : MonoBehaviour
         LevelManager.Instance.scoreArtLetter.StopKeepBlink();
         LevelManager.Instance.packageArtLetter.StopKeepBlink();
 
-        MusicManager.Instance.StopAllMusic();
+        MusicManager.Instance.StartMusic();
         PlayerInfo.Instance.ResetCharacter();
         LevelManager.Instance.StartLevel();
         transform.parent.gameObject.SetActive(false);

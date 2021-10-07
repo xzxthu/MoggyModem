@@ -63,7 +63,7 @@ public class LevelManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ����һ��
+    /// 过关
     /// </summary>
     public void PassALevel()
     {
@@ -108,7 +108,7 @@ public class LevelManager : MonoBehaviour
 
     private void GeneratTiles(int diff, bool random = false)
     {
-        Debug.Log("gener");
+        //Debug.Log("gener");
         GameObject[] tiles = TileManager.Instance.GeneratTiles(diff, random);
         LeftTile = tiles[0];
         RightTile = tiles[1];
@@ -191,7 +191,7 @@ public class LevelManager : MonoBehaviour
 
         ProgressbarManager.Instance.StartProgressBar();
 
-        MusicManager.Instance.StartMusic();
+        MusicManager.Instance.StartMusic(true);
 
         FatAnimationMgr.Instance.SetIdle();
     }

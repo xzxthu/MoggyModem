@@ -16,7 +16,8 @@ public class PlayerInfo : MonoBehaviour
 
     public static PlayerInfo Instance;
     public GameObject player;
-    
+
+    private float timer = 0;
 
     private void Awake()
     {
@@ -28,6 +29,19 @@ public class PlayerInfo : MonoBehaviour
         else
         {
             Instance = this;
+        }
+    }
+
+    private void Update()
+    {
+        if(hurting)
+        {
+            timer += Time.deltaTime;
+            if(timer>0.01f)
+            {
+                timer = 0;
+                LateDeduce();
+            }
         }
     }
 
@@ -53,7 +67,7 @@ public class PlayerInfo : MonoBehaviour
         Debug.Log("Add Heart");
 
         CatAnimationMgr.Instance.SetAddHeart();
-        MusicManager.Instance.StopAddMew(heart);
+        MusicManager.Instance.SetMusic(heart);
         HeartBar.Instance.SetHeart(heart);
     }
 
@@ -68,14 +82,12 @@ public class PlayerInfo : MonoBehaviour
         if (!hurting)
         {
             hurting = true;
-            StartCoroutine(LateDeduce());
         }
         
     }
 
-    private IEnumerator LateDeduce()
+    private void LateDeduce()
     {
-        yield return new WaitForSeconds(0.01f);
 
         hurting = false;
 
@@ -84,11 +96,10 @@ public class PlayerInfo : MonoBehaviour
         if (heart == 0)
         {
             LevelManager.Instance.GameOver();
-            yield return null;
         }
         else
         {
-            MusicManager.Instance.PlayAddMew(heart);
+            MusicManager.Instance.SetMusic(heart);
         }
         
     }
@@ -104,19 +115,15 @@ public class PlayerInfo : MonoBehaviour
         ResetPosition();
         player.GetComponent<playerMovement>().isHurting = false;
         player.GetComponent<playerMovement>().Hint.SetActive(false);
+        player.GetComponent<SpriteRenderer>().enabled = true;
     }
 
     private void ResetPosition()
     {
         player.GetComponent<playerMovement>().isDrag = false;
         player.transform.position = StartPos;
-        StartCoroutine(LateResetPos());
     }
 
-    private IEnumerator LateResetPos()
-    {
-        yield return new WaitForSeconds(0.01f);
-        
-    }
+
 
 }

@@ -17,7 +17,7 @@ public class playerMovement : MonoBehaviour
     private float collidRScale = 3;
     [HideInInspector] public bool isHurting;
     private float timer;
-    private float hindTimer;
+    private float hintTimer;
     private float colliderRidus;
     private Vector3 distanceBtMouseAndBall;
     private Vector3 recordedMousePos;
@@ -57,8 +57,8 @@ public class playerMovement : MonoBehaviour
 
         if(!isDrag)
         {
-            hindTimer += Time.deltaTime;
-            if(hindTimer>2f && hindTimer<2.01f)
+            hintTimer += Time.deltaTime;
+            if(hintTimer>2f && hintTimer<2.01f)
             {
                 Hint.SetActive(true);
             }
@@ -83,7 +83,7 @@ public class playerMovement : MonoBehaviour
     void OnMouseUp()
     {
         isDrag = false;
-        hindTimer = 0;
+        hintTimer = 0;
         GetComponent<CircleCollider2D>().radius = colliderRidus * collidRScale;
         transform.tag = "Untagged";
         gameObject.layer = LayerMask.NameToLayer("Ignore");
@@ -130,7 +130,7 @@ public class playerMovement : MonoBehaviour
             {
                 isHurting = true;
                 PlayerInfo.Instance.DeductHeart();
-                hindTimer = 0;
+                hintTimer = 0;
             }
 
             isDrag = false;

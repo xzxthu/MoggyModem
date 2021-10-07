@@ -4,8 +4,22 @@ using UnityEngine;
 
 public class MusicManager : MonoBehaviour
 {
+    public AudioClip[] hearts;
+
+    //public AudioClip oneHeart;
+    //public AudioClip twoHeart;
+    //public AudioClip threeHeart;
+    //public AudioClip fourHeart;
+    //public AudioClip fiveHeart;
+
+    public AudioSource[] ads;
+
+
+    private float[] musicVolume = new float[] { 0.5f, 0.5f,0.75f,1,1 };
 
     public static MusicManager Instance;
+
+
     private void Awake()
     {
         if (Instance != null)
@@ -19,31 +33,23 @@ public class MusicManager : MonoBehaviour
         }
     }
 
-
-    public AudioClip[] hearts;
-
-    //public AudioClip oneHeart;
-    //public AudioClip twoHeart;
-    //public AudioClip threeHeart;
-    //public AudioClip fourHeart;
-    //public AudioClip fiveHeart;
-
-    public AudioSource[] ads;
-
-    public float Volume = 1;
-
-    public void StartMusic()
+    public void StartMusic(bool cover = false)
     {
-        for(int i = 0; i<5;i++)
+        for (int i = 0; i < 5; i++)
         {
-            ads[i].clip = hearts[i];
-            ads[i].Play();
+            if (!cover)
+            {
+                ads[i].clip = hearts[i];
+                ads[i].Play(); 
+            }
             ads[i].volume = 0;
             ads[i].loop = true;
         }
 
-        ads[4].volume = Volume;
+        ads[4].volume = musicVolume[4];
     }
+
+
 
     public void StopAllMusic()
     {
@@ -53,20 +59,20 @@ public class MusicManager : MonoBehaviour
         }
     }
 
-    public void PlayAddMew(int nowHeart)
+
+    public void SetMusic(int nowHeart)
     {
-        
-         ads[nowHeart-1].volume = Volume;
-        
+        for (int i = 0; i < hearts.Length; i++)
+        {
+            if (i < nowHeart-1)
+            {
+                ads[i].volume = 0;
+            }
+            else
+            {
+                ads[i].volume = musicVolume[i];
+            }
+        }
     }
 
-    public void StopAddMew(int nowHeart)
-    {
-        ads[nowHeart-1].volume = 0;
-    }
-
-    public void SetVolume(float newV)
-    {
-        Volume = newV;
-    }
 }

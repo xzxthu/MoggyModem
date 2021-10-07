@@ -6,12 +6,12 @@ public class SaveItem : MonoBehaviour
 {
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("Enter Save");
+        //Debug.Log("Enter Save");
 
         if (collision.gameObject.tag == "Player")
         {
             ShakeManager.Instance.IsSave();
-            Debug.Log("In Save");
+            //Debug.Log("In Save");
         }
     }
 

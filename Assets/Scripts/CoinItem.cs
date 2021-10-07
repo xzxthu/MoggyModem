@@ -9,7 +9,7 @@ public class CoinItem : MonoBehaviour
 
         if (collision.gameObject.tag == "Player")
         {
-            Debug.Log("Enter Coin");
+            //Debug.Log("Enter Coin");
 
             LevelManager.Instance.AddScore(CoinManager.Instance.CoinScore * (LevelManager.Instance.PassLevels+1));
 
