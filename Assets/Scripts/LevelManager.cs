@@ -21,6 +21,7 @@ public class LevelManager : MonoBehaviour
 
     public ArtLetter scoreArtLetter;
     public ArtLetter packageArtLetter;
+    public ArtLetter gameOverScore;
 
     public GameObject StartMenu;
     public GameObject goodJob;
@@ -53,12 +54,13 @@ public class LevelManager : MonoBehaviour
     private void Start()
     {
         //ResetLevel();
+        gameOver.SetActive(false);
     }
 
     public void AddScore(int addScore)
     {
         Score += addScore;
-        scoreArtLetter.showNumber = Score;
+        scoreArtLetter.SetShowNumberWithEffect(Score);
         scoreArtLetter.Blink();
     }
 
@@ -69,9 +71,11 @@ public class LevelManager : MonoBehaviour
     {
         Debug.Log("Enter Pass a level");
 
+        //StopAllCoroutines();
+
         PassLevels++;
 
-        packageArtLetter.showNumber = PassLevels;
+        packageArtLetter.SetShowNumber(PassLevels);
         packageArtLetter.Blink();
         AddScore(PassScore * PassLevels);
         goodJob.SetActive(true);
@@ -237,17 +241,19 @@ public class LevelManager : MonoBehaviour
 
     public void GameOver()
     {
-        ResetLevel();
-
         gameOver.SetActive(true); //Game Over Object
+        gameOverScore.SetShowNumberWithEffect(Score);
+
+        ResetLevel();
 
         PlayerInfo.Instance.player.SetActive(false);
 
         scoreArtLetter.StartKeepBlink();
         packageArtLetter.StartKeepBlink();
-
+        
         CatAnimationMgr.Instance.SetGameOver();
         
     }
+
 
 }

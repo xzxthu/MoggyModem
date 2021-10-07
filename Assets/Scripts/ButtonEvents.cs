@@ -23,8 +23,9 @@ public class ButtonEvents : MonoBehaviour
 
     public void TryAgain()
     {
-        LevelManager.Instance.scoreArtLetter.showNumber = 0;
-        LevelManager.Instance.packageArtLetter.showNumber = 0;
+        LevelManager.Instance.scoreArtLetter.SetShowNumber(0);
+        LevelManager.Instance.packageArtLetter.SetShowNumber(0);
+        LevelManager.Instance.gameOverScore.SetShowNumber(0);
         LevelManager.Instance.scoreArtLetter.StopKeepBlink();
         LevelManager.Instance.packageArtLetter.StopKeepBlink();
 
