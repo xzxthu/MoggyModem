@@ -13,9 +13,11 @@ public class CoinItem : MonoBehaviour
 
             MusicManager.Instance.PlaySECoin();
 
+            GetComponent<Animator>().SetTrigger("Coin");
+
             LevelManager.Instance.AddScore(CoinManager.Instance.CoinScore * (LevelManager.Instance.PassLevels+1));
 
-            gameObject.SetActive(false);
+            //gameObject.SetActive(false);
 
 
         }
