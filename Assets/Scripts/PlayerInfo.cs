@@ -6,11 +6,11 @@ public class PlayerInfo : MonoBehaviour
 {
     [HideInInspector] public Vector3 StartPos;
 
-    public int startHeart = 4;
-    public int maxHeart = 5;
+    public static int startHeart = 5;
+    public static int maxHeart = 5;
     public GameObject hurtLight;
 
-    public int heart;
+    [SerializeField] private int heart;
 
     private bool hurting = false;
 
@@ -57,14 +57,15 @@ public class PlayerInfo : MonoBehaviour
     /// </summary>
     public void AddHeart()
     {
-        if(heart+1> maxHeart)
+        if(heart> maxHeart-1)
         {
             HeartBar.Instance.SetHeart(maxHeart);
             return;
         }
 
-        heart = Mathf.Min((heart + 1), maxHeart);
-        Debug.Log("Add Heart");
+        int addHeart = heart + 1;
+        SetHeart(Mathf.Min(addHeart, maxHeart));
+        Debug.Log("Add Heart and now is " + heart);
 
         CatAnimationMgr.Instance.SetAddHeart();
         MusicManager.Instance.SetMusic(heart);
@@ -90,9 +91,11 @@ public class PlayerInfo : MonoBehaviour
     {
 
         hurting = false;
-
-        heart = Mathf.Max((heart - 1), 0);
+        int minusHeart = heart - 1;
+        heart = Mathf.Max(minusHeart, 0);
+        Debug.Log("Reduce Heart and now is " + heart);
         HeartBar.Instance.SetHeart(heart);
+
         if (heart == 0)
         {
             LevelManager.Instance.GameOver();
@@ -104,6 +107,16 @@ public class PlayerInfo : MonoBehaviour
         
     }
 
+    public void SetHeart(int newHeart)
+    {
+        heart = newHeart;
+    }
+
+    public int GetHeart()
+    {
+        return heart;
+    }
+
     /// <summary>
     /// ���ý�ɫ
     /// </summary>
@@ -113,15 +126,16 @@ public class PlayerInfo : MonoBehaviour
         hurting = false;
         heart = startHeart;
         ResetPosition();
-        player.GetComponent<playerMovement>().isHurting = false;
-        player.GetComponent<playerMovement>().Hint.SetActive(false);
-        player.GetComponent<SpriteRenderer>().enabled = true;
+        
     }
 
-    private void ResetPosition()
+    public void ResetPosition()
     {
         player.GetComponent<playerMovement>().isDrag = false;
         player.transform.position = StartPos;
+        player.GetComponent<playerMovement>().isHurting = false;
+        player.GetComponent<playerMovement>().Hint.SetActive(false);
+        player.GetComponent<SpriteRenderer>().enabled = true;
     }
 
 

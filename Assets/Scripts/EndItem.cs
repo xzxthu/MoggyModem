@@ -33,7 +33,7 @@ public class EndItem : MonoBehaviour
 
                 LevelManager.Instance.PassALevel();
 
-                PlayerInfo.Instance.ResetCharacter();
+                PlayerInfo.Instance.ResetPosition();
 
 
             }

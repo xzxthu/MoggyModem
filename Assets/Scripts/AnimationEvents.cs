@@ -11,7 +11,7 @@ public class AnimationEvents : MonoBehaviour
 
     public void FixingEnd()
     {
-        CatAnimationMgr.Instance.SetIdle(PlayerInfo.Instance.heart);
+        CatAnimationMgr.Instance.SetIdle(PlayerInfo.Instance.GetHeart());
     }
 
     public void CloseGameObject()

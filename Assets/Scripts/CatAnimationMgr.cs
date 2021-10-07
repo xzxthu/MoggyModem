@@ -33,7 +33,7 @@ public class CatAnimationMgr : MonoBehaviour
 
     private void Update()
     {
-        if (PlayerInfo.Instance.heart < 3 || !isIdle) return;
+        if (PlayerInfo.Instance.GetHeart() < 3 || !isIdle) return;
 
         if(Random.Range(0,1000)>998)
         {
@@ -77,7 +77,7 @@ public class CatAnimationMgr : MonoBehaviour
     private IEnumerator LatePlayHolding()
     {
         yield return new WaitForSeconds(8f/12f);
-        SetIdle(PlayerInfo.Instance.heart);
+        SetIdle(PlayerInfo.Instance.GetHeart());
     }
 
     public void StartHolding()
